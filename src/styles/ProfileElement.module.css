@@ -1,0 +1,16 @@
+.link {
+  @apply border rounded-lg p-3 flex items-center gap-2;
+  @apply border-gray-300 hover:border-gray-400;
+}
+
+.link .icon {
+  @apply w-5 h-5;
+}
+
+.heading {
+  @apply font-semibold;
+}
+
+/* .paragraph {
+  @apply ;
+} */

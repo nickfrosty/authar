@@ -1,0 +1,61 @@
+.card {
+  @apply cursor-default md:p-3 gap-1 md:gap-2 flex items-center justify-between rounded-lg;
+  @apply border border-transparent md:hover:bg-white md:hover:border-gray-300;
+}
+
+.contentContainer {
+  @apply flex gap-3 md:gap-4 items-start md:items-center flex-grow;
+  @apply border-r border-gray-200 md:border-none;
+}
+
+/** composable image size to not have to update in multiple locations */
+.image-size {
+  @apply w-14 h-14 md:w-24 md:h-24;
+}
+.image {
+  @apply image-size;
+  @apply overflow-hidden rounded-lg flex-shrink-0;
+}
+.image img,
+.image svg,
+.image span {
+  @apply image-size;
+  @apply block object-cover place-self-center;
+}
+
+.metadata {
+  @apply flex-grow space-y-0 md:space-y-1;
+}
+.metadata h3 {
+  @apply text-black line-clamp-1 font-semibold;
+  @apply text-base md:text-lg;
+}
+.metadata h3 a {
+  @apply hover:text-hot-pink hover:underline;
+}
+
+.oneLiner {
+  @apply text-gray-500 line-clamp-2 md:line-clamp-1;
+  @apply text-sm md:text-base;
+  @apply leading-none;
+}
+
+.tagListing {
+  @apply hidden md:flex !mt-2 items-center gap-3 line-clamp-1;
+}
+.tagListing a {
+  @apply text-sm hover:underline;
+}
+
+.voteButton {
+  @apply flex-shrink-0 md:border border-transparent md:border-gray-300 text-xs md:text-sm md:rounded text-center;
+  @apply flex flex-col items-center;
+  @apply px-2 py-3;
+  /* @apply border-l border-gray-300; */
+  /* @apply border-none border-l-gray-100; */
+  @apply md:hover:bg-white md:hover:border-hot-pink md:hover:border-opacity-50 md:hover:-mt-2 md:hover:shadow-md;
+  /* @apply group-hover:bg-white group-hover:border-hot-pink group-hover:border-opacity-50 group-hover:-mt-2 group-hover:shadow; */
+}
+.voteButton svg {
+  @apply w-6 h-6;
+}

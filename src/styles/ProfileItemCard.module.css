@@ -1,0 +1,37 @@
+.item {
+  @apply flex items-center gap-1 w-full;
+}
+
+.card {
+  @apply justify-between flex items-center gap-4 border rounded-lg pl-5 pr-2 py-3 flex-grow;
+  @apply bg-white border-gray-300;
+}
+.disabled {
+  @apply bg-gray-200 border-gray-300;
+}
+
+.contentArea {
+  @apply space-y-1;
+}
+.majorText {
+  @apply text-base;
+}
+.disabled .majorText {
+  @apply !text-gray-500;
+}
+.minorText {
+  @apply text-sm text-gray-400;
+}
+
+.actionButtons {
+  @apply flex items-center gap-1;
+}
+.actionButtons > button {
+  @apply px-2 py-3;
+}
+.actionButtons > button {
+  @apply px-2 py-3;
+}
+.disabled .actionButtons > button {
+  @apply text-gray-500;
+}

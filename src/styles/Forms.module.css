@@ -1,0 +1,84 @@
+/**
+  Style the form editor dialog
+*/
+
+.form {
+  @apply max-w-lg mx-auto;
+
+  @apply bg-transparent border border-transparent;
+  /* @apply bg-white border border-gray-300; */
+  @apply p-4 rounded-lg;
+
+  /*  */
+  @apply grid grid-cols-1 gap-4;
+}
+
+/*
+  Style the form block and its children
+*/
+.element {
+  @apply w-full space-y-1;
+  /* @apply grid grid-cols-1 gap-4; */
+}
+.element .head {
+  @apply flex items-center justify-between;
+}
+
+.element label {
+  @apply space-y-0;
+}
+.element .label {
+  @apply font-semibold capitalize;
+  /* @apply text-sm capitalize; */
+}
+.element .description {
+  @apply text-sm text-gray-500;
+  /* @apply text-sm; */
+}
+
+.element .submit-area {
+  @apply col-span-full;
+  @apply flex items-center gap-4;
+}
+/* .element .submit-area > button {
+  @apply block !important;
+} */
+
+/*
+  Set the default styles for each form element
+*/
+.element textarea,
+.element input[type="url"],
+.element input[type="text"],
+.element input[type="text"],
+.element input[type="number"],
+.element input[type="email"],
+.element input[type="password"] {
+  @apply bg-white border border-gray-300;
+  @apply px-4 py-2 rounded-lg;
+}
+
+.element textarea {
+  @apply min-h-[7.25rem];
+}
+
+/*
+  Style the disabled form elements
+*/
+.element *:disabled {
+  @apply cursor-default;
+  /* @apply cursor-not-allowed; */
+  /* @apply bg-red-500 !important; */
+}
+
+/* 
+  should the password field be allowed?
+  it could be used for visually hiding the data in the field? idk if this is very useful
+  --
+  we could also color the element to give a warning, and use css to add text into it?
+  --
+  TODO: think more on this
+*/
+/* .element input[type="password"]{
+  @apply bg-red-200 border-red-500;
+} */

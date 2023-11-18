@@ -1,0 +1,85 @@
+/**
+  Style the form editor components
+*/
+
+/*
+  Style the wrapper container to hold the actual element and action buttons
+*/
+.elementWrapper {
+  @apply flex items-center gap-2 w-full;
+}
+
+/*
+  Style the dedicated action buttons
+*/
+.actionsButtons {
+  @apply flex-shrink block;
+  @apply space-y-1;
+}
+.actionsButtons button {
+  @apply block p-1;
+  @apply text-slate-500;
+  @apply hover:bg-white hover:text-black hover:border-slate-300;
+  @apply active:bg-white active:text-black active:border-slate-300;
+}
+.actionsButtons button svg {
+  @apply w-5 h-5;
+}
+
+/*
+  Style the actively being dragged component
+*/
+.dragActive {
+  /* @apply border-gray-500; */
+  @apply opacity-70;
+}
+
+/*
+  Style the component being dragged on top of
+*/
+.dragHover {
+  @apply opacity-30;
+}
+
+.card {
+  @apply justify-between flex items-center gap-4 border rounded-lg pl-5 pr-2 py-3 flex-grow;
+  @apply bg-white border-gray-300;
+}
+.disabled {
+  @apply bg-gray-200 border-gray-300;
+}
+.placeholder {
+  @apply card;
+  @apply py-4 block bg-transparent border-dashed;
+  @apply border-gray-400;
+}
+
+.placeholder .title {
+  @apply font-semibold text-lg;
+}
+
+.contentArea {
+  @apply space-y-1;
+}
+.majorText {
+  @apply text-base;
+}
+.disabled .majorText {
+  @apply !text-gray-500;
+}
+.minorText {
+  @apply text-sm text-gray-400;
+}
+
+.toggleDisplay {
+  @apply flex items-center gap-1;
+}
+.toggleDisplay > button {
+  @apply px-2 py-3;
+}
+.toggleDisplay > button {
+  @apply px-2 py-3;
+}
+.disabled .toggleDisplay > button {
+  @apply text-gray-500;
+}
