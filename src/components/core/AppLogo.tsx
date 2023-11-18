@@ -7,7 +7,11 @@ import LogoMarkBlack from "@/../public/logomark-black.svg";
 // import LogoBlack from "@/../public/logo-black.svg";
 // import WordmarkBlack from "@/../public/wordmark-black.svg";
 
-export const AppLogo = memo(({ className = "" }: SimpleComponentProps) => {
+type AppLogoProps = SimpleComponentProps & {
+  height?: number;
+};
+
+export const AppLogo = memo(({ className = "", height = 40 }: AppLogoProps) => {
   return (
     <Link
       href={"/"}
@@ -15,7 +19,7 @@ export const AppLogo = memo(({ className = "" }: SimpleComponentProps) => {
     >
       {/* <Image src={LogoBlack} alt={""} height={40} priority />
       <Image src={WordmarkBlack} alt={SITE.name} height={28} priority /> */}
-      <Image src={LogoMarkBlack} alt={SITE.name} height={40} priority />
+      <Image src={LogoMarkBlack} alt={SITE.name} height={height} priority />
     </Link>
   );
 });
