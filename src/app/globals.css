@@ -10,8 +10,8 @@ html {
 }
 
 body {
-  /* @apply bg-gray-100; */
-  background-color: #fffafa;
+  @apply bg-white;
+  /* background-color: #fffafa; */
   /* background-image: url("/img/background.png");
   @apply bg-center bg-fixed; */
 }
