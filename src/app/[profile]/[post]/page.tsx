@@ -2,13 +2,12 @@ import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import { STATIC_USER } from "@/data";
 
 // import { serialize } from "next-mdx-remote/serialize";
 // import MarkdownFormatter from "@/components/MarkdownFormatter";
 import { SocialShareButtons } from "@/components/SocialButtons";
 import { FormattedDateAgo } from "@/components/core/FormattedDateAgo";
-
-import AvatarPic from "@/../public/img/nick.jpg";
 
 type PageProps = {
   params: {
@@ -79,14 +78,14 @@ export default async function Page({ params }: PageProps) {
       <section className="flex items-center justify-between gap-4">
         <section className="flex items-center gap-2 md:gap-4">
           <Link
-            href={"#todo"}
+            href={`/${STATIC_USER.username}`}
             className="block rounded-full overflow-hidden w-12 h-12 bg-slate-300"
           >
             <Image
               width={64}
               height={64}
-              src={AvatarPic}
-              alt={"todo"}
+              src={STATIC_USER.image}
+              alt={STATIC_USER.name}
               className="object-cover object-center rounded-full overflow-hidden w-12 h-12"
               priority={true}
             />
@@ -94,10 +93,10 @@ export default async function Page({ params }: PageProps) {
 
           <div className="space-y-0">
             <Link
-              href={"#todo"}
+              href={`/${STATIC_USER.username}`}
               className="hover:underline md:text-lg font-medium"
             >
-              Display name
+              {STATIC_USER.name}
             </Link>
 
             <FormattedDateAgo date={new Date().toDateString()} />
