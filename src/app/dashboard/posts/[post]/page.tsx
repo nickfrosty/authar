@@ -33,6 +33,15 @@ export default async function Page({ params }: PageProps) {
         </Link>
 
         <section className="flex justify-between gap-2 items-center">
+          <Link
+            target="_blank"
+            href="/user_profile/post-slug-or-id-here"
+            className="inline-flex btn btn-ghost"
+          >
+            Preview
+            <FeatherIcon name="ExternalLink" size={16} />
+          </Link>
+
           <button type="button" className="inline-block btn btn-dark">
             Publish
           </button>
