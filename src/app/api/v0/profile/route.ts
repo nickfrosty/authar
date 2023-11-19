@@ -80,8 +80,8 @@ export async function PATCH(req: Request) {
   const updatedProfile = await updateProfile({
     username,
     data: {
-      socialLinks: input.socialLinks,
-      elements: JSON.stringify(input.elements),
+      // socialLinks: input.socialLinks,
+      // elements: JSON.stringify(input.elements),
     },
   });
 
