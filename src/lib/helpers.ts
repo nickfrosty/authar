@@ -67,3 +67,20 @@ export function debounce<F extends (...params: any[]) => void>(
     timeoutID = window.setTimeout(() => fn.apply(this, args), delay);
   } as F;
 }
+
+/**
+ * Simple checker to see if a url is valid or not
+ *
+ * todo: in the future we should support other protocols
+ * - ipfs
+ * - arweave
+ * - solana pay?
+ */
+export function isValidUrl(string: string) {
+  try {
+    const url = new URL(string);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch (e) {
+    return false;
+  }
+}
