@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
@@ -9,7 +8,7 @@ import { Menu as MenuIcon, X as XIcon, Mic as MicIcon } from "react-feather";
 import { AppLogo } from "@/components/core/AppLogo";
 import { AppNav } from "@/components/core/AppNav";
 
-export default function AppHeader() {
+export default function MarketingHeader() {
   const pathName = usePathname();
   const [showMenu, setShowMenu] = useState(false);
 
