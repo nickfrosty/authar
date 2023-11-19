@@ -2,7 +2,8 @@ import MarketingHeader from "@/components/marketing/MarketingHeader";
 import { ProfileHero } from "@/components/profile/ProfileHero";
 import { notFound } from "next/navigation";
 import { Metadata, ResolvingMetadata } from "next";
-import { STATIC_USER } from "@/data";
+import { STATIC_USER, STATIC_POST } from "@/data";
+import { HorizontalPostCard } from "@/components/posts/HorizontalPostCard";
 // import { getUserProfile } from "@/lib/queries/users";
 
 type PageProps = {
@@ -48,6 +49,16 @@ export default async function Page({ params }: PageProps) {
 
       <main className="profile-container">
         <ProfileHero />
+
+        <section className="grid gap-4">
+          <HorizontalPostCard
+            href={STATIC_POST.href}
+            date={STATIC_POST.date}
+            title={STATIC_POST.title}
+            description={STATIC_POST.description}
+            imageSrc={STATIC_POST.image}
+          />
+        </section>
       </main>
     </>
   );
