@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { DashboardSubHeader } from "@/components/dashboard/DashboardSubHeader";
 import Link from "next/link";
 import { FeatherIcon } from "@/components/core/FeatherIcon";
+import Editor from "@/components/editor";
 
 type PageProps = {
   params: {
@@ -49,7 +50,9 @@ export default async function Page({ params }: PageProps) {
       </DashboardSubHeader>
 
       <main className="flex gap-8 justify-between container">
-        <article className="flex-grow">post content WYSIWYG editor</article>
+        <article className="!flex-grow prose !max-w-full" id={"lexical-editor"}>
+          <Editor editorId="lexical-editor" />
+        </article>
 
         <aside className="flex-shrink-0 w-80">metadata fields?</aside>
       </main>
