@@ -19,7 +19,7 @@ type SidebarHeadingProps = {
 
 export const SidebarHeading = memo(({ label, icon }: SidebarHeadingProps) => {
   return (
-    <h3 className="flex gap-2 font-medium items-center py-2 text-sm mt-3 text-gray-500">
+    <h3 className="flex uppercase gap-2 font-semibold items-center py-2 text-xs mt-3 text-gray-500">
       {typeof icon !== "undefined" && (
         <FeatherIcon name={icon} className="flex-shrink-0 place-self-center" />
       )}
