@@ -27,27 +27,35 @@ export const DashboardMenu = memo(() => {
           <SidebarHeading label="Content" />
         </li>
         <li>
-          <SidebarLink href="/dashboard" icon="Feather" label="Posts" />
+          <SidebarLink href="/dashboard/posts" icon="Feather" label="Posts" />
         </li>
         <li>
-          <SidebarLink href="/dashboard" icon="Image" label="Assets" />
+          <SidebarLink href="/dashboard/assets" icon="Image" label="Assets" />
         </li>
         <li>
-          <SidebarLink href="/dashboard" icon="FileText" label="Pages" />
+          <SidebarLink href="/dashboard/pages" icon="FileText" label="Pages" />
         </li>
 
         <li>
           <SidebarHeading label="Manage" />
         </li>
         <li>
-          <SidebarLink href="/dashboard" icon="Users" label="Subscribers" />
-        </li>
-        <li>
-          <SidebarLink href="/dashboard" icon="Bell" label="Notifications" />
+          <SidebarLink
+            href="/dashboard/subscribers"
+            icon="Users"
+            label="Subscribers"
+          />
         </li>
         <li>
           <SidebarLink
-            href="/dashboard"
+            href="/dashboard/notifications"
+            icon="Bell"
+            label="Notifications"
+          />
+        </li>
+        <li>
+          <SidebarLink
+            href="/dashboard/comments"
             icon="MessageSquare"
             label="Comments"
           />
