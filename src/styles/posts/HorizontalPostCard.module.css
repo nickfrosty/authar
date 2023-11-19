@@ -1,0 +1,60 @@
+.card {
+  @apply border cursor-default rounded-2xl overflow-hidden;
+  @apply bg-white border-gray-200;
+  @apply hover:shadow-lg hover:border-gray-300;
+  @apply flex flex-row;
+}
+
+.image {
+  @apply block w-full overflow-hidden relative;
+  @apply bg-gray-200;
+  /* @apply h-48; */
+  @apply max-w-[14rem] h-full;
+  @apply flex-shrink-0;
+}
+.imageLeft {
+  @apply image;
+  @apply order-1;
+}
+.imageRight {
+  @apply image;
+  @apply order-3;
+}
+.image img,
+.image svg {
+  @apply object-cover object-center;
+}
+
+.details {
+  @apply px-4 py-4 grid gap-2;
+  @apply order-2 flex-grow;
+}
+.title {
+  @apply font-semibold text-xl max-w-5xl line-clamp-2;
+  @apply group-hover:underline;
+}
+.meta {
+  @apply flex items-center gap-4 justify-between;
+}
+.minor {
+  @apply flex items-center gap-1 text-xs text-gray-500;
+}
+.minor svg {
+  @apply w-4 h-4;
+}
+
+.description {
+  @apply text-gray-500 h-24 line-clamp-4;
+  /* @apply text-sm; */
+}
+
+.userContainer {
+  @apply hover:underline text-base flex items-center gap-2;
+}
+.avatar {
+  @apply block rounded-full w-7 h-7 overflow-hidden bg-slate-300;
+}
+.avatar img,
+.avatar svg {
+  @apply object-cover object-center rounded-full overflow-hidden w-7 h-7;
+}
