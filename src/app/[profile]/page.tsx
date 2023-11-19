@@ -1,6 +1,8 @@
 import MarketingHeader from "@/components/marketing/MarketingHeader";
 import { ProfileHero } from "@/components/profile/ProfileHero";
 import { notFound } from "next/navigation";
+import { Metadata, ResolvingMetadata } from "next";
+import { STATIC_USER } from "@/data";
 // import { getUserProfile } from "@/lib/queries/users";
 
 type PageProps = {
@@ -8,6 +10,26 @@ type PageProps = {
     profile: string;
   };
 };
+
+export async function generateMetadata(
+  { params }: PageProps,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  if (!params.profile) notFound();
+
+  const profile = STATIC_USER;
+
+  // handle the 404 for no or invalid `profile`
+  if (!profile) notFound();
+
+  return {
+    title: `${profile.name} (@${profile.username})`,
+    description: profile.bio ?? `${profile.name} (@${profile.username})`,
+    alternates: {
+      canonical: `/${profile.username}`,
+    },
+  };
+}
 
 export default async function Page({ params }: PageProps) {
   if (!params.profile) notFound();
