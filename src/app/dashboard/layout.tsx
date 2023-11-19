@@ -14,7 +14,7 @@ export default async function Layout({ children }: LayoutProps) {
     <section className="flex">
       <DashboardMenu />
 
-      <main className="container flex-grow bg-white">{children}</main>
+      <section className="flex-grow bg-white">{children}</section>
     </section>
   );
 }

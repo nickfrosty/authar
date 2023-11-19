@@ -9,7 +9,7 @@ import {
 
 export const DashboardMenu = memo(() => {
   return (
-    <aside className="w-80 space-y-4 p-4 flex flex-col bg-slate-50 h-screen border-r border-gray-300">
+    <aside className="w-72 flex-shrink-0 space-y-4 p-4 flex flex-col bg-slate-50 h-screen border-r border-gray-300">
       <section className="flex items-center justify-between gap-2">
         <AppLogo height={32} />
 

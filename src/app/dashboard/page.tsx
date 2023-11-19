@@ -1,3 +1,3 @@
 export default async function Page() {
-  return <>Dashboard</>;
+  return <main className="container">Dashboard</main>;
 }
