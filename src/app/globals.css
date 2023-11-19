@@ -25,7 +25,7 @@ body {
   @apply space-y-8 py-8 md:space-y-20;
 }
 .profile-container {
-  @apply max-w-sm mx-auto;
+  @apply max-w-2xl mx-auto;
   @apply space-y-8 py-10 md:py-20;
 }
 

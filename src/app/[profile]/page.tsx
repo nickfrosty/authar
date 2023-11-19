@@ -1,3 +1,5 @@
+import MarketingHeader from "@/components/marketing/MarketingHeader";
+import { ProfileHero } from "@/components/profile/ProfileHero";
 import { notFound } from "next/navigation";
 // import { getUserProfile } from "@/lib/queries/users";
 
@@ -18,5 +20,13 @@ export default async function Page({ params }: PageProps) {
 
   // if (!profile) notFound();
 
-  return <main className="flex flex-col">profile page</main>;
+  return (
+    <>
+      <MarketingHeader />
+
+      <main className="profile-container">
+        <ProfileHero />
+      </main>
+    </>
+  );
 }
