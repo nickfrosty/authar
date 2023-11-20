@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { LexicalEditor } from "./LexicalEditor";
-import { LEXICAL_NODES } from "./config";
+import { LEXICAL_NODES, LEXICAL_THEME } from "./config";
 import { EditorHistoryStateContext } from "./context/EditorHistoryState";
 
 type EditorProps = {
@@ -48,9 +48,9 @@ export const Editor = ({
           editorState: localStorageContent,
           namespace: editorId,
           nodes: LEXICAL_NODES,
-          theme: { root: className },
+          // theme: { root: className },
           // note: we could manually define node styles, but we rather style them with raw CSS
-          // theme: Object.assign(LEXICAL_THEME, { root: className }),
+          theme: Object.assign(LEXICAL_THEME, { root: className }),
           onError: (error) => {
             console.warn("[editor error]", error);
           },

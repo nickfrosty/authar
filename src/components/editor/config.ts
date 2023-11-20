@@ -25,7 +25,7 @@ export const LEXICAL_NODES: ReadonlyArray<
  * master theme configuration for the editor
  */
 export const LEXICAL_THEME: EditorThemeClasses = {
-  root: "p-4 border-slate-500 border-2 rounded h-full min-h-[200px] focus:outline-none focus-visible:border-black",
+  root: "bg-red-500",
   link: "cursor-pointer",
   text: {
     bold: "font-semibold",
