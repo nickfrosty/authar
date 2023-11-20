@@ -7,10 +7,7 @@ import { $isLinkNode } from "@lexical/link";
 import { $getSelection, FORMAT_TEXT_COMMAND, LexicalEditor } from "lexical";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { computePosition } from "@floating-ui/dom";
-import {
-  FeatherIcon,
-  type FeatherIconName,
-} from "@/components/core/FeatherIcon";
+import { IconButton } from "../IconButton";
 
 import { $isRangeSelected } from "../utils";
 import { useUserInteractions } from "@/hooks/useUserInteractions";
@@ -197,25 +194,4 @@ export const FloatingMenuPlugin = () => {
    * on a `useEffect` for accessing `localStorage`. if that changes, this cause
    * the error again
    */
-};
-
-type IconButtonProps = {
-  icon: FeatherIconName;
-  active?: boolean;
-} & React.ComponentProps<"button">;
-
-const IconButton = ({ icon, active, className, ...props }: IconButtonProps) => {
-  return (
-    <button
-      type="button"
-      className={clsx(
-        "p-2 rounded-md text-sm hover:bg-gray-900",
-        // active ? "" : "",
-        className,
-      )}
-      {...props}
-    >
-      <FeatherIcon name={icon} size={18} strokeWidth={active ? 3.4 : 1.4} />
-    </button>
-  );
 };
