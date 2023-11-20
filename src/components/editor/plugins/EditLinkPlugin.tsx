@@ -25,7 +25,6 @@ export const EditLinkPlugin = () => {
   const [value, setValue] = useState("");
   const [error, setError] = useState(false);
   const [pos, setPos] = useState<EditLinkMenuPosition>(undefined);
-  const [domRange, setDomRange] = useState<Range | undefined>(undefined);
   const [hasLink, setHasLink] = useState(false);
 
   const [editor] = useLexicalComposerContext();
@@ -34,7 +33,6 @@ export const EditLinkPlugin = () => {
     setValue("");
     setError(false);
     setPos(undefined);
-    setDomRange(undefined);
     editor.focus();
   }, [editor]);
 
@@ -56,7 +54,6 @@ export const EditLinkPlugin = () => {
         computePosition(domRange, ref.current, { placement: "bottom" })
           .then((pos) => {
             setPos({ x: pos.x, y: pos.y + 10 });
-            setDomRange(domRange);
             editor.getEditorState().read(() => {
               const selection = $getSelection();
               const linkTarget = $getSharedLinkTarget(selection);
@@ -91,7 +88,7 @@ export const EditLinkPlugin = () => {
     resetState();
   });
 
-  const handleSetLink = () => {
+  const handleSetLink = useCallback(() => {
     if (!value) return;
 
     const isLinkSet = editor.dispatchCommand(TOGGLE_LINK_COMMAND, {
@@ -101,12 +98,12 @@ export const EditLinkPlugin = () => {
 
     if (isLinkSet) resetState();
     else setError(true);
-  };
+  }, [editor, resetState, setError, value]);
 
-  const handleRemoveLink = () => {
+  const handleRemoveLink = useCallback(() => {
     editor.dispatchCommand(TOGGLE_LINK_COMMAND, null);
     resetState();
-  };
+  }, [editor, resetState]);
 
   return (
     <div
