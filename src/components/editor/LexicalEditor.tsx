@@ -18,6 +18,7 @@ import {
   EditLinkPlugin,
   FloatingMenuPlugin,
   LocalStoragePlugin,
+  OpenLinkPlugin,
 } from "./plugins";
 import { isValidUrl } from "@/lib/helpers";
 
@@ -47,6 +48,7 @@ export const LexicalEditor = ({ config }: LexicalEditorProps) => {
       <FloatingMenuPlugin />
       <AutoLinkPlugin />
       <EditLinkPlugin />
+      <OpenLinkPlugin />
     </LexicalComposer>
   );
 };
