@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { LexicalEditor } from "./LexicalEditor";
 import { LEXICAL_NODES } from "./config";
 import { EditorHistoryStateContext } from "./context/EditorHistoryState";
@@ -15,9 +16,30 @@ export const Editor = ({
   editorId,
   className = "p-4 border-slate-500 border-2 rounded h-full min-h-[200px] focus:outline-none focus-visible:border-black",
 }: EditorProps) => {
+  // track the editor's initialization status
+  const [initialized, setInitialized] = useState(true);
+  const [localStorageContent, setLocalStorageContent] = useState<string | null>(
+    null,
+  );
+
   // load the initial editor content from the synced local storage object
   // todo: make this more dynamic to be post specific
-  let localStorageContent = localStorage.getItem(editorId) ?? "";
+  useEffect(() => {
+    setLocalStorageContent(localStorage.getItem(editorId));
+    setInitialized(false);
+  }, []);
+
+  /**
+   * prevent the editor from being rendered until the initialization process is complete
+   *
+   * note: this prevents server errors while trying to access local storage,
+   * while still enables the editor to use the local storage draft as the initial editor state
+   *
+   * todo: this seems to cause some layout shift...
+   * in the future, maybe we render the editor content as static text,
+   * then allow the editor to take control?
+   */
+  if (initialized) return null;
 
   return (
     <EditorHistoryStateContext>
