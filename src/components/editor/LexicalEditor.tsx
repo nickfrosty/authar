@@ -11,7 +11,7 @@ import { MarkdownShortcutPlugin } from "@lexical/react/LexicalMarkdownShortcutPl
 import { useEditorHistoryState } from "./context/EditorHistoryState";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 
-import { LocalStoragePlugin } from "./plugins";
+import { FloatingMenuPlugin, LocalStoragePlugin } from "./plugins";
 
 type LexicalEditorProps = {
   config: Parameters<typeof LexicalComposer>["0"]["initialConfig"];
@@ -33,6 +33,7 @@ export const LexicalEditor = ({ config }: LexicalEditorProps) => {
       <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
       {/* custom plugins */}
       <LocalStoragePlugin namespace={config.namespace} />
+      <FloatingMenuPlugin />
     </LexicalComposer>
   );
 };
