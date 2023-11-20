@@ -15,6 +15,7 @@ import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 
 import {
   AutoLinkPlugin,
+  EditLinkPlugin,
   FloatingMenuPlugin,
   LocalStoragePlugin,
 } from "./plugins";
@@ -45,6 +46,7 @@ export const LexicalEditor = ({ config }: LexicalEditorProps) => {
       <LocalStoragePlugin namespace={config.namespace} />
       <FloatingMenuPlugin />
       <AutoLinkPlugin />
+      <EditLinkPlugin />
     </LexicalComposer>
   );
 };

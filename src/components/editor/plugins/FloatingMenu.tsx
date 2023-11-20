@@ -12,7 +12,7 @@ import { IconButton } from "../IconButton";
 import { $isRangeSelected } from "../utils";
 import { useUserInteractions } from "@/hooks/useUserInteractions";
 
-// import { TOGGLE_EDIT_LINK_MENU } from "./EditLink";
+import { TOGGLE_EDIT_LINK_MENU } from "./EditLinkPlugin";
 
 type FloatingMenuPosition = { x: number; y: number } | undefined;
 
@@ -108,14 +108,14 @@ function FloatingMenu({ editor, show, state }: FloatingMenuProps) {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, "code");
         }}
       />
-      {/* <IconButton
+      <IconButton
         icon="Link"
         aria-label="Add or edit link"
-        active={props.isLink}
+        active={state.isLink}
         onClick={() => {
           editor.dispatchCommand(TOGGLE_EDIT_LINK_MENU, undefined);
         }}
-      /> */}
+      />
     </div>
   );
 }
