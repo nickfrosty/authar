@@ -1,9 +1,11 @@
 "use client";
 
+import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
-import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
+import { ListPlugin } from "@lexical/react/LexicalListPlugin";
+import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
 
 import { TRANSFORMERS } from "@lexical/markdown";
 import { MarkdownShortcutPlugin } from "@lexical/react/LexicalMarkdownShortcutPlugin";
@@ -16,6 +18,7 @@ import {
   FloatingMenuPlugin,
   LocalStoragePlugin,
 } from "./plugins";
+import { isValidUrl } from "@/lib/helpers";
 
 type LexicalEditorProps = {
   config: Parameters<typeof LexicalComposer>["0"]["initialConfig"];
@@ -35,6 +38,9 @@ export const LexicalEditor = ({ config }: LexicalEditorProps) => {
       />
       <HistoryPlugin externalHistoryState={historyState} />
       <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
+      <ListPlugin />
+      <LinkPlugin validateUrl={isValidUrl} />
+
       {/* custom plugins */}
       <LocalStoragePlugin namespace={config.namespace} />
       <FloatingMenuPlugin />
