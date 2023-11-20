@@ -3,7 +3,7 @@ import type { Klass, LexicalNode, LexicalNodeReplacement } from "lexical";
 
 import { HeadingNode, QuoteNode } from "@lexical/rich-text";
 import { ListNode, ListItemNode } from "@lexical/list";
-import { LinkNode } from "@lexical/link";
+import { LinkNode, AutoLinkNode } from "@lexical/link";
 import { CodeNode } from "@lexical/code";
 
 /**
@@ -13,9 +13,10 @@ export const LEXICAL_NODES: ReadonlyArray<
   Klass<LexicalNode> | LexicalNodeReplacement
 > = [
   // comment for better diffs
-  CodeNode,
   HeadingNode,
+  CodeNode,
   LinkNode,
+  AutoLinkNode,
   ListNode,
   ListItemNode,
   QuoteNode,
