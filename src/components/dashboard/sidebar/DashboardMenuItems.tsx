@@ -15,29 +15,37 @@ type SidebarHeadingProps = {
   className?: string;
   label: string;
   icon?: FeatherIconName;
+  hideLabel?: boolean;
 };
 
-export const SidebarHeading = memo(({ label, icon }: SidebarHeadingProps) => {
-  return (
-    <h5 className="flex uppercase gap-2 font-semibold items-center py-2 text-xs mt-3 text-gray-500">
-      {typeof icon !== "undefined" && (
-        <FeatherIcon name={icon} className="flex-shrink-0 place-self-center" />
-      )}
+export const SidebarHeading = memo(
+  ({ label, icon, hideLabel = false }: SidebarHeadingProps) => {
+    return (
+      <h5 className="flex h-8 uppercase gap-2 font-semibold items-center py-2 text-xs mt-3 text-gray-500">
+        {typeof icon !== "undefined" && (
+          <FeatherIcon
+            name={icon}
+            className="flex-shrink-0 place-self-center"
+          />
+        )}
 
-      {label}
-    </h5>
-  );
-});
+        <span className={clsx(!!hideLabel && "md:hidden")}>{label}</span>
+        <div className={clsx(!!hideLabel && " md:border-t w-full h-1")}></div>
+      </h5>
+    );
+  },
+);
 
 type SidebarLinkProps = {
   className?: string;
   href: string;
   label: string;
   icon: FeatherIconName;
+  hideLabel?: boolean;
 };
 
 export const SidebarLink = memo(
-  ({ href, icon, label, className }: SidebarLinkProps) => {
+  ({ href, icon, label, className, hideLabel = false }: SidebarLinkProps) => {
     return (
       <Link
         href={href}
@@ -51,7 +59,7 @@ export const SidebarLink = memo(
           className="flex-shrink-0 place-self-center group-hover:text-hot-pink"
         />
 
-        {label}
+        <span className={clsx(!!hideLabel && "md:hidden")}>{label}</span>
       </Link>
     );
   },
