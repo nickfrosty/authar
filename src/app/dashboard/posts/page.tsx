@@ -23,9 +23,9 @@ export default async function Page() {
         <section className="flex justify-between gap-2 items-center">
           <Link
             href="/dashboard/posts/new"
-            className="inline-block btn btn-dark"
+            className="inline-block btn btn-dark whitespace-nowrap"
           >
-            Create Post
+            New<span className="hidden md:inline"> Post</span>
           </Link>
         </section>
       </DashboardSubHeader>
