@@ -29,6 +29,13 @@ body {
   @apply space-y-8 py-10;
 }
 
+.overlay {
+  @apply fixed inset-0 z-20;
+  @apply bg-white/5 backdrop-blur-sm;
+  @apply overflow-hidden !important;
+  @apply w-screen h-screen;
+}
+
 .input,
 textarea,
 input[type="url"],
