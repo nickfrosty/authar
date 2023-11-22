@@ -17,12 +17,12 @@ export const IconButton = ({
       type="button"
       className={clsx(
         "p-2 rounded-md text-sm hover:bg-gray-900",
-        // active ? "" : "",
+        active ? "text-blue-300" : "",
         className,
       )}
       {...props}
     >
-      <FeatherIcon name={icon} size={18} strokeWidth={active ? 3.4 : 1.4} />
+      <FeatherIcon name={icon} size={18} strokeWidth={active ? 2.4 : 2.4} />
     </button>
   );
 };
