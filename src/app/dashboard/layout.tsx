@@ -11,10 +11,12 @@ export const metadata: Metadata = {
 
 export default async function Layout({ children }: LayoutProps) {
   return (
-    <section className="flex">
+    <section className="md:flex flex-row">
       <DashboardMenu />
 
-      <section className="flex-grow bg-white">{children}</section>
+      <section className="flex-grow bg-white mt-[56px] md:mt-0">
+        {children}
+      </section>
     </section>
   );
 }
