@@ -49,12 +49,12 @@ export default async function Page({ params }: PageProps) {
         </section>
       </DashboardSubHeader>
 
-      <main className="flex gap-8 justify-between container">
+      <main className="md:flex gap-8 justify-between container">
         <article className="!flex-grow prose !max-w-full" id={"lexical-editor"}>
           <Editor editorId="lexical-editor" />
         </article>
 
-        <aside className="flex-shrink-0 w-80">metadata fields?</aside>
+        <aside className="flex-shrink-0 md:w-80">metadata fields?</aside>
       </main>
     </>
   );
