@@ -22,7 +22,7 @@ export default async function Page() {
 
         <section className="flex justify-between gap-2 items-center">
           <Link
-            href="/dashboard/posts/new"
+            href="/dashboard/new"
             className="inline-block btn btn-dark whitespace-nowrap"
           >
             New<span className="hidden md:inline"> Post</span>
