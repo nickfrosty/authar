@@ -25,7 +25,7 @@ export const DashboardMenu = memo(
       <>
         <header className="md:hidden fixed top-0 w-full bg-white border-b border-gray-300">
           <div className="py-2 px-4 flex items-center justify-between gap-2">
-            <AppLogo height={32} className={clsx(!!showMenu && "md:hidden")} />
+            <AppLogo height={32} />
 
             <button
               type="button"
@@ -55,13 +55,13 @@ export const DashboardMenu = memo(
         <aside
           className={clsx(
             className,
-            "flex-shrink-0 z-30 top-0 left-0 space-y-4 p-4 pt-2 md:pt-4 flex flex-col bg-slate-50 border-r border-gray-300",
+            "flex-shrink-0 top-0 left-0 space-y-4 p-4 pt-2 md:pt-4 flex flex-col bg-slate-50 border-r border-gray-300",
             "h-screen min-h-screen max-h-screen overflow-y-auto w-full",
             "md:w-[18rem] relative",
             // support the collapsible sidebar for a cleaner dashboard UI
             !!showMenu && "md:max-w-fit",
             //
-            showMenu ? "fixed h-screen md:relative" : "hidden md:flex",
+            showMenu ? "sticky h-screen md:relative" : "hidden md:flex",
           )}
         >
           <section className="flex items-center justify-between gap-2">
