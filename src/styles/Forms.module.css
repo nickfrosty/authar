@@ -47,13 +47,27 @@
 */
 .element textarea,
 .element input[type="url"],
-.element input[type="text"],
-.element input[type="text"],
+.element input[type="password"],
 .element input[type="number"],
+.element input[type="date"],
+.element input[type="time"],
+.element input[type="datetime-local"],
 .element input[type="email"],
-.element input[type="password"] {
+.element input[type="text"] {
   @apply bg-white border border-gray-300;
-  @apply px-4 py-2 rounded-md w-full;
+  @apply px-3 py-2 rounded-md w-full;
+}
+
+.element textarea::placeholder,
+.element input[type="url"]::placeholder,
+.element input[type="number"]::placeholder,
+/* .element input[type="date"]::-webkit-datetime-edit-text,
+.element input[type="time"]::-webkit-datetime-edit-text,
+.element input[type="datetime-local"]::-webkit-datetime-edit-text, */
+.element input[type="email"]::placeholder,
+.element input[type="password"]::placeholder,
+.element input[type="text"]::placeholder {
+  @apply text-gray-400;
 }
 
 .element textarea {
