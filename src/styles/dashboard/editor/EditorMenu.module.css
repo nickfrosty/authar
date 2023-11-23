@@ -1,0 +1,53 @@
+/*
+  styles for the EditorMenu
+*/
+
+.menu {
+  @apply flex flex-col flex-shrink-0 top-0 left-0;
+  @apply w-full h-screen min-h-screen max-h-screen overflow-y-auto;
+  @apply border-l border-gray-300;
+  @apply md:w-96 sticky;
+}
+.menu.active {
+  @apply h-screen;
+}
+.menu.inactive {
+  @apply hidden md:flex;
+}
+
+/* styles for the menu's header/topper  */
+.topper {
+  @apply px-6 pt-4;
+  @apply flex items-center justify-between gap-2;
+}
+.topper h2 {
+  @apply font-semibold text-xl;
+}
+.topper .button {
+  @apply p-2;
+}
+.topper .button svg {
+  @apply flex-shrink-0 place-self-center;
+}
+
+/*  */
+.section {
+  @apply space-y-4 py-6 px-6;
+  @apply border-b border-gray-300;
+}
+/* .section:first-of-type {
+  @apply pt-4;
+  @apply bg-red-100;
+} */
+
+/*  */
+.elementWithIcon {
+  @apply relative;
+}
+.elementWithIcon svg {
+  @apply text-gray-500 absolute top-2.5 left-3 w-5 h-5;
+}
+.elementWithIcon input,
+.elementWithIcon textarea {
+  @apply !pl-9;
+}
