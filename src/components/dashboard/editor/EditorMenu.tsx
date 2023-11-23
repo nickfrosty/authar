@@ -4,7 +4,7 @@ import { memo, useState } from "react";
 import clsx from "clsx";
 
 import { FeatherIcon } from "@/components/core/FeatherIcon";
-import styles from "@/styles/Forms.module.css";
+import formStyles from "@/styles/Forms.module.css";
 
 type EditorMenuProps = {
   className?: string;
@@ -50,7 +50,7 @@ export const EditorMenu = memo(({ className = "" }: EditorMenuProps) => {
       {/* <ul className="space-y-1 flex-grow"> */}
 
       <section className="">
-        <div className={styles.element}>
+        <div className={formStyles.element}>
           <label htmlFor="slug">Post URL</label>
 
           <div className="relative">
@@ -67,7 +67,7 @@ export const EditorMenu = memo(({ className = "" }: EditorMenuProps) => {
               placeholder="Customize this post URL"
             />
           </div>
-          <p className={styles.description}>
+          <p className={formStyles.description}>
             authar.io/username/post-slug-here
           </p>
         </div>
