@@ -55,6 +55,35 @@ export const EditorMenu = memo(({ className = "" }: EditorMenuProps) => {
             />
           </div>
         </FormItem>
+
+        <FormItem name="date" label="Publish date">
+          <div className={styles.elementWithIcon}>
+            <FeatherIcon name="Link" strokeWidth={1.8} />
+            <input type="datetime-local" name="date" id="date" placeholder="" />
+          </div>
+        </FormItem>
+
+        <FormItem
+          name="tags"
+          label="Tags"
+          description={`Searchable tags to help your post get discovered`}
+        >
+          <input
+            type="text"
+            name="tags"
+            id="tags"
+            placeholder="Start typing a tag..."
+          />
+        </FormItem>
+
+        <FormItem name="excerpt" label="Excerpt">
+          <textarea
+            name="excerpt"
+            id="excerpt"
+            placeholder="A brief excerpt of this post"
+            maxLength={150}
+          ></textarea>
+        </FormItem>
       </section>
     </aside>
   );
