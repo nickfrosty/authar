@@ -24,7 +24,7 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <main className="md:flex justify-between flex-row">
-      <section className="!flex-grow !max-w-full py-4 px-6 space-y-4">
+      <section className="!flex-grow !max-w-full py-6 px-6 space-y-4">
         <EditorHeader />
 
         <article className="!flex-grow !max-w-full prose" id={"lexical-editor"}>
