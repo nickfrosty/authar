@@ -52,7 +52,7 @@ input[type="password"] {
 
 .btn {
   @apply flex items-center gap-2;
-  @apply px-5 py-2 rounded-lg;
+  @apply px-4 py-2 rounded-lg text-sm;
   @apply border bg-transparent border-transparent;
   @apply hover:bg-opacity-90 hover:border-opacity-90;
 }
@@ -68,6 +68,7 @@ input[type="password"] {
 }
 .btn-ghost {
   @apply bg-transparent border-gray-300;
+  @apply hover:border-gray-400;
   @apply disabled:text-gray-300;
 }
 
