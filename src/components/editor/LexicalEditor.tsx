@@ -31,7 +31,14 @@ export const LexicalEditor = ({ config }: LexicalEditorProps) => {
 
   return (
     <LexicalComposer initialConfig={config}>
-      {/*  */}
+      {/* custom plugins */}
+      <LocalStoragePlugin namespace={config.namespace} />
+      <FloatingMenuPlugin />
+      <AutoLinkPlugin />
+      <EditLinkPlugin />
+      <OpenLinkPlugin />
+
+      {/* official plugins */}
       <RichTextPlugin
         contentEditable={<ContentEditable spellCheck={true} />}
         ErrorBoundary={LexicalErrorBoundary}
@@ -42,13 +49,6 @@ export const LexicalEditor = ({ config }: LexicalEditorProps) => {
       <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
       <ListPlugin />
       <LinkPlugin validateUrl={isValidUrl} />
-
-      {/* custom plugins */}
-      <LocalStoragePlugin namespace={config.namespace} />
-      <FloatingMenuPlugin />
-      <AutoLinkPlugin />
-      <EditLinkPlugin />
-      <OpenLinkPlugin />
     </LexicalComposer>
   );
 };

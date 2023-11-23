@@ -14,7 +14,7 @@ type EditorProps = {
 
 export const Editor = ({
   editorId,
-  className = "p-4 border-slate-500 border-2 rounded h-full min-h-[200px] focus:outline-none focus-visible:border-black",
+  className = "border-none focus:outline-none",
 }: EditorProps) => {
   // track the editor's initialization status
   const [initialized, setInitialized] = useState(true);
