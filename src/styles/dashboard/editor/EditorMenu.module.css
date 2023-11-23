@@ -15,19 +15,27 @@
   @apply hidden md:flex;
 }
 
-/* styles for the menu's header/topper  */
+/* styles for the each menu's sections header/topper  */
 .topper {
-  @apply px-6 pt-4;
   @apply flex items-center justify-between gap-2;
 }
 .topper h2 {
   @apply font-semibold text-xl;
+}
+.topper h3 {
+  @apply font-semibold text-base;
 }
 .topper .button {
   @apply p-2;
 }
 .topper .button svg {
   @apply flex-shrink-0 place-self-center;
+}
+
+/* style the primary header item for the menu */
+.menuHeader {
+  @apply topper;
+  @apply px-6 pt-4;
 }
 
 /*  */
