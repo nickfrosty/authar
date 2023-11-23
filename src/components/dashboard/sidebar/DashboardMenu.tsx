@@ -61,7 +61,7 @@ export const DashboardMenu = memo(
             // support the collapsible sidebar for a cleaner dashboard UI
             !!showMenu && "md:max-w-fit",
             //
-            showMenu ? "h-screen md:relative" : "hidden md:flex",
+            showMenu ? "h-screen" : "hidden md:flex",
           )}
         >
           <section className="flex items-center justify-between gap-2">
