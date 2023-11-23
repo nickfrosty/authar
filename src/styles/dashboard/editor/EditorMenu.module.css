@@ -45,7 +45,7 @@
   @apply relative;
 }
 .elementWithIcon svg {
-  @apply text-gray-500 absolute top-2.5 left-3 w-5 h-5;
+  @apply text-gray-500 absolute top-3 left-3 w-4 h-4;
 }
 .elementWithIcon input,
 .elementWithIcon textarea {
