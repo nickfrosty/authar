@@ -57,11 +57,11 @@ export const DashboardMenu = memo(
             className,
             "flex-shrink-0 top-0 left-0 space-y-4 p-4 pt-2 md:pt-4 flex flex-col bg-slate-50 border-r border-gray-300",
             "h-screen min-h-screen max-h-screen overflow-y-auto w-full",
-            "md:w-[18rem] relative",
+            "md:w-[18rem] sticky",
             // support the collapsible sidebar for a cleaner dashboard UI
             !!showMenu && "md:max-w-fit",
             //
-            showMenu ? "sticky h-screen md:relative" : "hidden md:flex",
+            showMenu ? "h-screen md:relative" : "hidden md:flex",
           )}
         >
           <section className="flex items-center justify-between gap-2">
