@@ -17,7 +17,11 @@
 
 /* styles for the each menu's sections header/topper  */
 .topper {
-  @apply flex items-center justify-between gap-2;
+  @apply flex items-center justify-between gap-2 w-full;
+}
+.topper.toggle {
+  /* @apply hover:bg-gray-50; */
+  @apply cursor-pointer;
 }
 .topper h2 {
   @apply font-semibold text-xl;
@@ -35,16 +39,20 @@
 /* style the primary header item for the menu */
 .menuHeader {
   @apply topper;
-  @apply px-6 pt-4;
+  @apply px-6 p-4;
 }
 
 /*  */
 .section {
-  @apply space-y-4 py-6 px-6;
   @apply border-b border-gray-300;
 }
+.section .topper {
+  @apply px-6 py-4;
+}
+.section .inner {
+  @apply space-y-4 px-6 pb-4;
+}
 /* .section:first-of-type {
-  @apply pt-4;
   @apply bg-red-100;
 } */
 
@@ -58,4 +66,8 @@
 .elementWithIcon input,
 .elementWithIcon textarea {
   @apply !pl-9;
+}
+
+.minor {
+  @apply text-sm text-gray-500;
 }
