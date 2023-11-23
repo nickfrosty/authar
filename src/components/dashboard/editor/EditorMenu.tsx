@@ -57,10 +57,7 @@ export const EditorMenu = memo(({ className = "" }: EditorMenuProps) => {
         </FormItem>
 
         <FormItem name="date" label="Publish date">
-          <div className={styles.elementWithIcon}>
-            <FeatherIcon name="Link" strokeWidth={1.8} />
-            <input type="datetime-local" name="date" id="date" placeholder="" />
-          </div>
+          <input type="datetime-local" name="date" id="date" placeholder="" />
         </FormItem>
 
         <FormItem
