@@ -24,7 +24,7 @@ export const EditorMenu = memo(({ className = "" }: EditorMenuProps) => {
         showMenu ? styles.active : styles.inactive,
       )}
     >
-      <header className={styles.topper}>
+      <header className={styles.menuHeader}>
         <h2>Post settings</h2>
 
         <button
@@ -39,7 +39,7 @@ export const EditorMenu = memo(({ className = "" }: EditorMenuProps) => {
         </button>
       </header>
 
-      <section className={styles.section}>
+      <MenuSection>
         <FormItem
           name="slug"
           label="Post URL"
@@ -84,7 +84,47 @@ export const EditorMenu = memo(({ className = "" }: EditorMenuProps) => {
             maxLength={150}
           ></textarea>
         </FormItem>
-      </section>
+      </MenuSection>
+
+      <MenuSection label="SEO Settings" canToggle={true}>
+        <p className={styles.minor}>
+          Custom post details to be displayed on search engines like Google,
+          Bing, and others.
+        </p>
+
+        <FormItem name="seo_title" label="Title">
+          <input
+            type="text"
+            name="seo_title"
+            id="seo_title"
+            placeholder="Custom title to display in search engines"
+          />
+        </FormItem>
+
+        <FormItem name="seo_description" label="Description">
+          <textarea
+            name="seo_description"
+            id="seo_description"
+            placeholder="Brief description of this post"
+            maxLength={150}
+          ></textarea>
+        </FormItem>
+
+        {/* <FormItem
+          name="keywords"
+          label="Keywords"
+          // description={``}
+        >
+          <input
+            type="text"
+            name="seo_Keywords"
+            id="seo_Keywords"
+            placeholder="Comma separated list of keywords..."
+          />
+        </FormItem> */}
+
+        {/* <button type="button">Search engine preview</button> */}
+      </MenuSection>
     </aside>
   );
 });
@@ -108,6 +148,43 @@ const FormItem = memo(
           <p className={form.description}>{description}</p>
         )}
       </div>
+    );
+  },
+);
+
+type MenuSectionProps = {
+  label?: string | React.ReactNode;
+  canToggle?: boolean;
+  children: React.ReactNode;
+};
+
+const MenuSection = memo(
+  ({ label, canToggle = false, children }: MenuSectionProps) => {
+    const [showSection, setShowSection] = useState(false);
+
+    return (
+      <section className={styles.section}>
+        {typeof label != "undefined" && (
+          <button
+            className={clsx(styles.topper, canToggle && styles.toggle)}
+            onClick={() => setShowSection(!showSection)}
+            disabled={!canToggle}
+          >
+            {typeof label == "string" ? <h3>{label}</h3> : <>{label}</>}
+
+            {!!canToggle && (
+              <FeatherIcon
+                name="ChevronDown"
+                className={showSection ? "rotate-180" : ""}
+              />
+            )}
+          </button>
+        )}
+
+        {!canToggle || showSection == true ? (
+          <div className={styles.inner}>{children}</div>
+        ) : null}
+      </section>
     );
   },
 );
