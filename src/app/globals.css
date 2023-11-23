@@ -36,19 +36,19 @@ body {
   @apply w-screen h-screen;
 }
 
-.input,
+/* .input,
 textarea,
 input[type="url"],
 input[type="text"],
 input[type="number"],
 input[type="email"],
 input[type="password"] {
-  /* @apply bg-transparent border border-transparent; */
+  @apply bg-transparent border border-transparent;
   @apply px-4 py-2 rounded-lg;
 }
 .input-default {
   @apply bg-white border border-gray-300;
-}
+} */
 
 .btn {
   @apply flex items-center gap-2;
