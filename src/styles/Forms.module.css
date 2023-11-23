@@ -25,11 +25,9 @@
 }
 
 .element label {
-  @apply space-y-0;
-}
-.element .label {
+  @apply space-y-0 block;
+  @apply text-sm;
   @apply font-semibold capitalize;
-  /* @apply text-sm capitalize; */
 }
 .element .description {
   @apply text-sm text-gray-500;
@@ -55,7 +53,7 @@
 .element input[type="email"],
 .element input[type="password"] {
   @apply bg-white border border-gray-300;
-  @apply px-4 py-2 rounded-lg;
+  @apply px-4 py-2 rounded-lg w-full;
 }
 
 .element textarea {
