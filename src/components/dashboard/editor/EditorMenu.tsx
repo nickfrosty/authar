@@ -41,6 +41,7 @@ export const EditorMenu = memo(({ className = "" }: EditorMenuProps) => {
 
       <section className={styles.section}>
         <FormItem
+          name="slug"
           label="Post URL"
           description={`authar.io/username/post-slug-here`}
         >
@@ -60,21 +61,24 @@ export const EditorMenu = memo(({ className = "" }: EditorMenuProps) => {
 });
 
 type FormItemProps = {
+  name: string;
   label: string;
   description?: string;
   children: React.ReactNode;
 };
 
-const FormItem = memo(({ label, description, children }: FormItemProps) => {
-  return (
-    <div className={form.element}>
-      <label htmlFor="slug">{label}</label>
+const FormItem = memo(
+  ({ name, label, description, children }: FormItemProps) => {
+    return (
+      <div className={form.element}>
+        <label htmlFor={name}>{label}</label>
 
-      {children}
+        {children}
 
-      {typeof description != "undefined" && (
-        <p className={form.description}>{description}</p>
-      )}
-    </div>
-  );
-});
+        {typeof description != "undefined" && (
+          <p className={form.description}>{description}</p>
+        )}
+      </div>
+    );
+  },
+);
