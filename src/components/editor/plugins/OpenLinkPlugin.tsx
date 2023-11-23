@@ -82,9 +82,11 @@ export const OpenLinkPlugin = () => {
       style={{ top: pos?.y, left: pos?.x, width }}
       aria-hidden={!pos?.x || !pos?.y}
       className={clsx(
-        "absolute flex min-w-[8rem] items-center justify-between border p-1 gap-1",
+        "flex break-all max-w-md items-center justify-between border p-1 gap-1",
         "bg-slate-100 border-slate-300 rounded-md shadow-md",
-        pos?.x && pos.y ? "opacity-1 visible" : "opacity-0 invisible",
+        pos?.x && pos.y
+          ? "opacity-1 visible fixed"
+          : "opacity-0 invisible hidden",
       )}
     >
       {link && !copied ? (

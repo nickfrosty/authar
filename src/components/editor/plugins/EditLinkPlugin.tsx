@@ -111,10 +111,12 @@ export const EditLinkPlugin = () => {
       style={{ top: pos?.y, left: pos?.x }}
       aria-hidden={!pos?.x || !pos?.y}
       className={clsx(
-        "absolute min-w-[22rem] flex items-center justify-between border rounded-md p-1 gap-1",
+        "min-w-[22rem] flex items-center justify-between border rounded-md p-1 gap-1",
         "bg-gray-800 text-white shadow-md",
         error ? "border-red-600" : "border-gray-300",
-        pos?.x && pos.y ? "opacity-1 visible" : "opacity-0 invisible",
+        pos?.x && pos.y
+          ? "opacity-1 visible absolute"
+          : "opacity-0 invisible hidden",
       )}
     >
       <input

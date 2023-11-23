@@ -63,9 +63,11 @@ function FloatingMenu({ editor, show, state }: FloatingMenuProps) {
       style={{ top: pos?.y, left: pos?.x }}
       aria-hidden={!pos?.x || !pos?.y}
       className={clsx(
-        "fixed flex items-center justify-between border rounded-md p-1 gap-1",
+        "flex items-center justify-between border rounded-md p-1 gap-1",
         "bg-gray-800 text-white border-gray-300 shadow-md",
-        pos?.x && pos.y ? "opacity-1 visible" : "opacity-0 invisible",
+        pos?.x && pos.y
+          ? "opacity-1 visible fixed"
+          : "opacity-0 invisible hidden",
       )}
     >
       <IconButton
