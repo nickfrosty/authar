@@ -3,6 +3,7 @@
 import { memo, useState } from "react";
 import clsx from "clsx";
 
+import { usePostEditorState } from "@/context/PostEditorState";
 import { FeatherIcon } from "@/components/core/FeatherIcon";
 import form from "@/styles/Forms.module.css";
 import styles from "@/styles/dashboard/editor/EditorMenu.module.css";
@@ -12,7 +13,8 @@ type EditorMenuProps = {
 };
 
 export const EditorMenu = memo(({ className = "" }: EditorMenuProps) => {
-  const [showMenu, setShowMenu] = useState(false);
+  const { editorMenu: showMenu, setEditorMenu: setShowMenu } =
+    usePostEditorState();
 
   return (
     <aside
