@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 import { Metadata, ResolvingMetadata } from "next";
 import { STATIC_USER, STATIC_POST } from "@/data";
 import { HorizontalPostCard } from "@/components/posts/HorizontalPostCard";
-// import { getUserProfile } from "@/lib/queries/users";
+import { getUserProfile } from "@/lib/queries/users";
+import { SITE } from "@/lib/const/general";
 
 type PageProps = {
   params: {
@@ -12,19 +13,21 @@ type PageProps = {
   };
 };
 
-export async function generateMetadata(
-  { params }: PageProps,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   if (!params.profile) notFound();
 
-  const profile = STATIC_USER;
+  // get the profile's record from the database
+  const profile = await getUserProfile({
+    username: params.profile,
+  });
 
   // handle the 404 for no or invalid `profile`
   if (!profile) notFound();
 
   return {
-    title: `${profile.name} (@${profile.username})`,
+    title: `${profile.name} (@${profile.username}) - ${SITE.name}`,
     description: profile.bio ?? `${profile.name} (@${profile.username})`,
     alternates: {
       canonical: `/${profile.username}`,
@@ -35,13 +38,12 @@ export async function generateMetadata(
 export default async function Page({ params }: PageProps) {
   if (!params.profile) notFound();
 
-  // get the product's record from the database
-  // const profile = await getUserProfile({
-  //   username: params.profile,
-  //   // include: { people: true },
-  // });
+  // get the profile's record from the database
+  const profile = await getUserProfile({
+    username: params.profile,
+  });
 
-  // if (!profile) notFound();
+  if (!profile) notFound();
 
   return (
     <>
