@@ -3,8 +3,8 @@
  */
 
 import prisma from "@/lib/prisma";
-import type { Post, Profile } from "@prisma/client";
-import { getUser } from "./users";
+import type { Post, User } from "@prisma/client";
+import { getUserProfile } from "./users";
 
 type GetSinglePostProps = {
   /** unique slug to access the post by */
@@ -12,7 +12,7 @@ type GetSinglePostProps = {
   /** uid of the post author */
   uid?: Post["uid"];
   /** username of the post author */
-  username?: Profile["username"];
+  username?: User["username"];
 };
 
 /**
@@ -25,7 +25,7 @@ export async function getSinglePost({
 }: GetSinglePostProps) {
   // auto-magically fetch the `uid` for the post when only the username is provided
   if (!uid && !!username) {
-    const user = await getUser({ username });
+    const user = await getUserProfile({ username });
 
     if (!user) {
       return null;
@@ -62,7 +62,7 @@ type GetPostsForUserProps = {
   /** uid of the post author */
   uid?: Post["uid"];
   /** username of the post author */
-  username?: Profile["username"];
+  username?: User["username"];
 };
 
 /**
@@ -71,7 +71,7 @@ type GetPostsForUserProps = {
 export async function getPostsForUser({ uid, username }: GetPostsForUserProps) {
   // auto-magically fetch the `uid` for the post when only the username is provided
   if (!uid && !!username) {
-    const user = await getUser({ username });
+    const user = await getUserProfile({ username });
 
     if (!user) {
       return null;

@@ -1,26 +1,33 @@
 /**
- * Library of common queries for managing Products
+ * Library of common queries for managing Users
  */
 
 import prisma from "@/lib/prisma";
-import { Profile, Prisma } from "@prisma/client";
+import { User, Prisma } from "@prisma/client";
 
-type GetUserProps = {
-  username: Profile["username"];
+type GetUserProfileProps = {
+  username: User["username"];
+  // status?: User["status"];
 };
 
 /**
- * Get a single User record from the database
+ * Get a single User's profile information from the database
  *
  * note: this should be used when getting public information for a user
+ *
+ * todo: add support for customizing the data retrieved, likely with a few
+ * standard options without needing to manually define each selected field each time
  */
-export async function getUser({ username }: GetUserProps) {
+export async function getUserProfile({ username }: GetUserProfileProps) {
   const user = await prisma.user.findUnique({
     where: { username },
     select: {
       uid: true,
+      name: true,
       username: true,
       image: true,
+      bio: true,
+      verified: true,
       status: true,
     },
   });
@@ -28,53 +35,21 @@ export async function getUser({ username }: GetUserProps) {
   return user;
 }
 
-type GetUserProfileProps = {
-  username: Profile["username"];
-  // status?: Profile["status"];
+type UpdateUserProps = {
+  username: User["username"];
+  data: Prisma.UserUpdateInput;
 };
 
 /**
- * Get a single User's profile from the database
- *
- * note: this should be used when getting public information for a user
+ * Update a single User record in the database
  */
-export async function getUserProfile({ username }: GetUserProfileProps) {
-  const user = await prisma.profile.findUnique({
-    where: { username },
-    include: {
-      user: {
-        select: {
-          uid: true,
-          name: true,
-          username: true,
-          image: true,
-          status: true,
-        },
-      },
-    },
-  });
-
-  return user;
-}
-
-type UpdateUserProfileProps = {
-  username: Profile["username"];
-  data: Prisma.ProfileUpdateInput;
-};
-
-/**
- * Update a single Profile in the database
- */
-export async function updateProfile({
-  username,
-  data,
-}: UpdateUserProfileProps) {
-  const profile = await prisma.profile.update({
+export async function updateUser({ username, data }: UpdateUserProps) {
+  const user = await prisma.user.update({
     where: {
       username,
     },
     data,
   });
 
-  return profile;
+  return user;
 }
