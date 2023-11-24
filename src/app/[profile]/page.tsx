@@ -27,7 +27,7 @@ export async function generateMetadata({
   if (!profile) notFound();
 
   return {
-    title: `${profile.name} (@${profile.username}) - ${SITE.name}`,
+    title: `${profile.name ?? `@${profile.username}`} - ${SITE.name}`,
     description: profile.bio ?? `${profile.name} (@${profile.username})`,
     alternates: {
       canonical: `/${profile.username}`,
@@ -50,7 +50,12 @@ export default async function Page({ params }: PageProps) {
       <MarketingHeader />
 
       <main className="profile-container">
-        <ProfileHero />
+        <ProfileHero
+          name={profile.name}
+          username={profile.username}
+          image={profile.image}
+          bio={profile.bio}
+        />
 
         <section className="grid gap-4">
           <HorizontalPostCard
