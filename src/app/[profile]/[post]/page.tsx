@@ -4,11 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { STATIC_POST } from "@/data";
 
+import { getSinglePost } from "@/lib/queries/posts";
 // import { serialize } from "next-mdx-remote/serialize";
 // import MarkdownFormatter from "@/components/MarkdownFormatter";
+
+import MarketingHeader from "@/components/marketing/MarketingHeader";
 import { SocialShareButtons } from "@/components/SocialButtons";
 import { FormattedDateAgo } from "@/components/core/FormattedDateAgo";
-import MarketingHeader from "@/components/marketing/MarketingHeader";
 
 type PageProps = {
   params: {
@@ -24,6 +26,12 @@ export async function generateMetadata(
   // locate the single record
   // locate the current post being requested
   const post = STATIC_POST;
+
+  // get the unique post record from the database
+  // const post = await getSinglePost({
+  //   slug: params.post,
+  //   username: params.profile,
+  // });
 
   // do nothing if the post was not found
   if (!post) return {};
@@ -52,16 +60,13 @@ export async function generateMetadata(
 export default async function Page({ params }: PageProps) {
   if (!params.profile && !params.post) notFound();
 
-  //   // get the product's record from the database
-  //   // const profile = await getUserProfile({
-  //   //   username: params.profile,
-  //   //   // include: { people: true },
-  //   // });
+  // get the unique post record from the database
+  const post = await getSinglePost({
+    slug: params.post,
+    username: params.profile,
+  });
 
-  //   // if (!profile) notFound();
-
-  //   return <main className="flex flex-col">profile page</main>;
-  // }
+  if (!post) notFound();
 
   // serialize the markdown content for parsing via MDX
   // const mdxSerialized = await serialize("post content", {
@@ -75,7 +80,7 @@ export default async function Page({ params }: PageProps) {
       <main className="page-container max-w-3xl !space-y-4 md:!space-y-6">
         <h1 className="font-bold text-3xl md:text-4xl max-w-5xl">
           <Link href={STATIC_POST.href} className="">
-            {STATIC_POST.title}
+            {post.title}
           </Link>
         </h1>
 
