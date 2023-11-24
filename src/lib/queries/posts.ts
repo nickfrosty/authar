@@ -57,3 +57,47 @@ export async function getSinglePost({
 
   return post;
 }
+
+type GetPostsForUserProps = {
+  /** uid of the post author */
+  uid?: Post["uid"];
+  /** username of the post author */
+  username?: Profile["username"];
+};
+
+/**
+ * Get a list of Posts
+ */
+export async function getPostsForUser({ uid, username }: GetPostsForUserProps) {
+  // auto-magically fetch the `uid` for the post when only the username is provided
+  if (!uid && !!username) {
+    const user = await getUser({ username });
+
+    if (!user) {
+      return null;
+    }
+
+    uid = user.uid;
+  }
+
+  // quick integrity check on the input
+  if (!uid) return null;
+
+  const posts = await prisma.post.findMany({
+    where: {
+      uid,
+    },
+    include: {
+      user: {
+        select: {
+          uid: true,
+          name: true,
+          username: true,
+          image: true,
+        },
+      },
+    },
+  });
+
+  return posts;
+}
