@@ -3,7 +3,7 @@
  */
 
 import { JsonResponse } from "@/lib/api";
-import { getUserProfile, updateProfile } from "@/lib/queries/users";
+import { getUserProfile, updateUser } from "@/lib/queries/users";
 import { ApiProfilePatchInput, ApiProfilePatchResponse } from "@/types/api";
 
 // export async function GET(req: Request) {
@@ -77,7 +77,7 @@ export async function PATCH(req: Request) {
   }
 
   //
-  const updatedProfile = await updateProfile({
+  const updatedProfile = await updateUser({
     username,
     data: {
       // socialLinks: input.socialLinks,
