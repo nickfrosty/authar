@@ -1,16 +1,18 @@
 import { memo } from "react";
 import Link from "next/link";
-import Image, { StaticImageData } from "next/image";
-import { FormattedDateAgo } from "@/components/core/FormattedDateAgo";
+import Image from "next/image";
+import type { Post } from "@prisma/client";
+
 import styles from "@/styles/posts/HorizontalPostCard.module.css";
+import { FormattedDateAgo } from "@/components/core/FormattedDateAgo";
 // import { Clock } from "react-feather";
 
 type HorizontalPostCardProps = {
-  title: string;
   href: string;
-  date?: string;
-  description?: string;
-  imageSrc?: StaticImageData;
+  title: Post["title"];
+  date: Post["date"];
+  excerpt: Post["excerpt"];
+  image: Post["image"];
   imageAlt?: string;
 };
 
@@ -18,17 +20,17 @@ export const HorizontalPostCard = memo(
   ({
     title,
     href,
-    description,
+    excerpt,
     date,
-    imageSrc,
+    image,
     imageAlt,
   }: HorizontalPostCardProps) => {
     return (
       <div className={styles.card}>
-        {!!imageSrc && (
+        {!!image && (
           <Link href={href} className={styles.imageLeft}>
             <Image
-              src={imageSrc}
+              src={image}
               fill
               alt={imageAlt ?? title}
               title={imageAlt ?? title}
@@ -38,8 +40,10 @@ export const HorizontalPostCard = memo(
         )}
 
         <div className={styles.details}>
-          <h4 className={styles.title}>
-            <Link href={href}>{title}</Link>
+          <h4>
+            <Link href={href} className={styles.title}>
+              {title}
+            </Link>
           </h4>
 
           <section className={styles.meta}>
@@ -51,12 +55,15 @@ export const HorizontalPostCard = memo(
             )} */}
 
             {!!date && (
-              <FormattedDateAgo date={date} className={styles.minor} />
+              <FormattedDateAgo
+                date={date.toISOString()}
+                className={styles.minor}
+              />
             )}
           </section>
 
-          {!!description && (
-            <p className={`${styles.description} fade-bottom`}>{description}</p>
+          {!!excerpt && (
+            <p className={`${styles.description} fade-bottom`}>{excerpt}</p>
           )}
         </div>
       </div>
