@@ -12,7 +12,7 @@ datasource db {
 
 // next-auth and custom
 model User {
-  username String @unique @default(uuid()) @db.VarChar(255)
+  username String @unique @db.VarChar(255)
 
   // start next-auth required
   uid           Int       @unique @default(autoincrement()) @db.UnsignedInt
