@@ -1,9 +1,8 @@
 import { memo } from "react";
 import Image from "next/image";
-import { STATIC_USER } from "@/data";
-import { Profile } from "@prisma/client";
-import { FeatherIcon } from "../core/FeatherIcon";
 import Link from "next/link";
+import { type Profile } from "@prisma/client";
+import { FeatherIcon } from "@/components/core/FeatherIcon";
 
 type ProfileHeroProps = {
   name: Profile["name"];

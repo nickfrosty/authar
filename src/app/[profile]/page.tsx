@@ -1,11 +1,12 @@
-import MarketingHeader from "@/components/marketing/MarketingHeader";
-import { ProfileHero } from "@/components/profile/ProfileHero";
 import { notFound } from "next/navigation";
-import { Metadata, ResolvingMetadata } from "next";
-import { STATIC_USER, STATIC_POST } from "@/data";
-import { HorizontalPostCard } from "@/components/posts/HorizontalPostCard";
+import { Metadata } from "next";
 import { getUserProfile } from "@/lib/queries/users";
 import { SITE } from "@/lib/const/general";
+import { STATIC_POST } from "@/data";
+
+import MarketingHeader from "@/components/marketing/MarketingHeader";
+import { HorizontalPostCard } from "@/components/posts/HorizontalPostCard";
+import { ProfileHero } from "@/components/profile/ProfileHero";
 
 type PageProps = {
   params: {
