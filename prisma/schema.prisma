@@ -34,6 +34,7 @@ model User {
 
   // connections to other model structures
   profile Profile? @relation("username")
+  posts   Post[]
 
   @@index([id], name: "user_id_idx")
   @@index([email], name: "user_email_idx")
@@ -60,6 +61,33 @@ model Profile {
 
   @@index([id], name: "profile_id_idx")
   @@index([username], name: "profile_username_idx")
+}
+
+// Post information
+model Post {
+  id   Int  @unique @default(autoincrement()) @db.UnsignedInt
+  uid  Int  @db.UnsignedInt
+  user User @relation(fields: [uid], references: [uid])
+
+  // general post metadata
+  slug      String
+  title     String
+  image     String?
+  tags      String?
+  excerpt   String?
+  date      DateTime? @default(now()) @db.DateTime(0)
+  updatedAt DateTime? @updatedAt
+
+  // seo metadata
+  seoTitle       String?
+  seoDescription String?
+
+  //
+  status Status? @default(ACTIVE)
+
+  @@unique([uid, slug])
+  @@index([id], name: "post_id_idx")
+  @@index([slug], name: "post_slug_idx")
 }
 
 // User types to be used for access controls
