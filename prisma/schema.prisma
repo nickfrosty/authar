@@ -85,7 +85,7 @@ model Post {
   //
   status Status? @default(ACTIVE)
 
-  @@unique([uid, slug])
+  @@unique([uid, slug], name: "slugKey")
   @@index([id], name: "post_id_idx")
   @@index([slug], name: "post_slug_idx")
 }
