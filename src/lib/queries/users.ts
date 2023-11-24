@@ -5,6 +5,29 @@
 import prisma from "@/lib/prisma";
 import { Profile, Prisma } from "@prisma/client";
 
+type GetUserProps = {
+  username: Profile["username"];
+};
+
+/**
+ * Get a single User record from the database
+ *
+ * note: this should be used when getting public information for a user
+ */
+export async function getUser({ username }: GetUserProps) {
+  const user = await prisma.user.findUnique({
+    where: { username },
+    select: {
+      uid: true,
+      username: true,
+      image: true,
+      status: true,
+    },
+  });
+
+  return user;
+}
+
 type GetUserProfileProps = {
   username: Profile["username"];
   // status?: Profile["status"];
@@ -21,9 +44,11 @@ export async function getUserProfile({ username }: GetUserProfileProps) {
     include: {
       user: {
         select: {
+          uid: true,
           name: true,
           username: true,
           image: true,
+          status: true,
         },
       },
     },
