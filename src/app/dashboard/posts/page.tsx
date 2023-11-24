@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { DashboardSubHeader } from "@/components/dashboard/DashboardSubHeader";
 import Link from "next/link";
 
+import { PostsManagerTable } from "@/components/dashboard/posts/PostsManagerTable";
+
 export const metadata: Metadata = {
   title: "Authar - Posts",
 };
@@ -31,14 +33,7 @@ export default async function Page() {
       </DashboardSubHeader>
 
       <main className="container">
-        <p className="">listing of all posts</p>
-
-        <Link
-          href="/dashboard/posts/post-slug-to-test-editor-page"
-          className="inline-block btn btn-dark"
-        >
-          Edit a post
-        </Link>
+        <PostsManagerTable />
       </main>
     </>
   );
