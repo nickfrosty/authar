@@ -87,16 +87,16 @@ export async function getPostsForUser({ uid, username }: GetPostsForUserProps) {
     where: {
       uid,
     },
-    include: {
-      user: {
-        select: {
-          uid: true,
-          name: true,
-          username: true,
-          image: true,
-        },
-      },
-    },
+    // include: {
+    //   user: {
+    //     select: {
+    //       uid: true,
+    //       name: true,
+    //       username: true,
+    //       image: true,
+    //     },
+    //   },
+    // },
   });
 
   return posts;
