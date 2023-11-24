@@ -1,14 +1,14 @@
 import { memo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { type Profile } from "@prisma/client";
+import { type User } from "@prisma/client";
 import { FeatherIcon } from "@/components/core/FeatherIcon";
 
 type ProfileHeroProps = {
-  name: Profile["name"];
-  username: Profile["username"];
-  image: Profile["image"];
-  bio: Profile["bio"];
+  name: User["name"];
+  username: User["username"];
+  image: User["image"];
+  bio: User["bio"];
 };
 
 export const ProfileHero = memo(

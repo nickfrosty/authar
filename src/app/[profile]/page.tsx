@@ -48,7 +48,7 @@ export default async function Page({ params }: PageProps) {
 
   // get the listing of the user's most recent posts
   const posts = await getPostsForUser({
-    uid: profile.user.uid,
+    uid: profile.uid,
   });
 
   return (
