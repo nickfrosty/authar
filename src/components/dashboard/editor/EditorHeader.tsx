@@ -3,8 +3,11 @@
 import { memo } from "react";
 import Link from "next/link";
 import { FeatherIcon } from "@/components/core/FeatherIcon";
+import { usePostEditorState } from "@/context/PostEditorState";
 
 export const EditorHeader = memo(({}: SimpleComponentProps) => {
+  const { editorMenu, setEditorMenu } = usePostEditorState();
+
   return (
     <header className="flex w-full justify-between gap-2 items-center">
       <section className="flex justify-between gap-4 items-center">
@@ -32,6 +35,20 @@ export const EditorHeader = memo(({}: SimpleComponentProps) => {
         <button type="button" className="inline-block btn btn-dark btn-sm">
           Publish
         </button>
+
+        {editorMenu && (
+          <button
+            type="button"
+            className="inline-block btn btn-sm !px-2 text-gray-500 hover:text-black"
+            onClick={() => setEditorMenu(!editorMenu)}
+          >
+            <FeatherIcon
+              name="LogOut"
+              strokeWidth={1.2}
+              className={editorMenu ? "rotate-180" : ""}
+            />
+          </button>
+        )}
       </section>
     </header>
   );
