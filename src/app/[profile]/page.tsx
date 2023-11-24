@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { getUserProfile } from "@/lib/queries/users";
 import { SITE } from "@/lib/const/general";
-import { STATIC_POST } from "@/data";
+import { getUserProfile } from "@/lib/queries/users";
+import { getPostsForUser } from "@/lib/queries/posts";
 
 import MarketingHeader from "@/components/marketing/MarketingHeader";
 import { HorizontalPostCard } from "@/components/posts/HorizontalPostCard";
@@ -46,6 +46,11 @@ export default async function Page({ params }: PageProps) {
 
   if (!profile) notFound();
 
+  // get the listing of the user's most recent posts
+  const posts = await getPostsForUser({
+    uid: profile.user.uid,
+  });
+
   return (
     <>
       <MarketingHeader />
@@ -58,15 +63,23 @@ export default async function Page({ params }: PageProps) {
           bio={profile.bio}
         />
 
-        <section className="grid gap-4">
-          <HorizontalPostCard
-            href={STATIC_POST.href}
-            date={STATIC_POST.date}
-            title={STATIC_POST.title}
-            description={STATIC_POST.description}
-            imageSrc={STATIC_POST.image}
-          />
-        </section>
+        {Array.isArray(posts) && posts.length > 0 ? (
+          <section className="grid gap-4">
+            {posts.map((post, key) => (
+              <HorizontalPostCard
+                key={key}
+                title={post.title}
+                href={`/${post.user.username}/${post.slug}`}
+                date={post.date}
+                excerpt={post.excerpt}
+                image={post.image}
+                // imageAlt={""}
+              />
+            ))}
+          </section>
+        ) : (
+          <div className="">No posts founds</div>
+        )}
       </main>
     </>
   );
