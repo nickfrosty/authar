@@ -1,0 +1,54 @@
+/*
+  styles for the Post Manager
+  (i.e. `/dashboard/posts`)
+*/
+
+.table {
+  @apply w-full table-auto;
+}
+.small {
+  @apply w-min;
+}
+
+/* style the individual line item of the table */
+.item {
+  @apply border-b border-gray-300;
+}
+
+/* primary content area for the post line item */
+.primaryArea {
+  @apply flex gap-4 py-5 w-full;
+}
+.primaryArea .imageWrapper {
+  @apply overflow-hidden;
+}
+.primaryArea .imageWrapper img {
+  @apply w-44;
+  @apply rounded-md aspect-video object-cover object-center;
+}
+.primaryArea .metadata {
+  @apply space-y-1;
+}
+.primaryArea .metadata h2 a {
+  @apply line-clamp-1 font-semibold text-lg hover:underline;
+}
+.primaryArea .metadata .details {
+  @apply text-gray-500 text-sm font-medium;
+}
+
+/* styles for the displayed post stat records */
+.statRecord {
+  @apply space-y-0 text-left;
+  /* @apply rounded-md border border-gray-300; */
+}
+.statRecord .value {
+  @apply font-semibold text-base;
+}
+.statRecord .label {
+  @apply text-gray-500 text-sm;
+}
+
+/* styles for the button and actions area */
+.actionsArea {
+  @apply w-fit space-y-0;
+}
