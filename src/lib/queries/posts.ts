@@ -1,0 +1,59 @@
+/**
+ * Library of common queries for managing Posts
+ */
+
+import prisma from "@/lib/prisma";
+import type { Post, Profile } from "@prisma/client";
+import { getUser } from "./users";
+
+type GetSinglePostProps = {
+  /** unique slug to access the post by */
+  slug: Post["slug"];
+  /** uid of the post author */
+  uid?: Post["uid"];
+  /** username of the post author */
+  username?: Profile["username"];
+};
+
+/**
+ * Get a single Post from the database
+ */
+export async function getSinglePost({
+  slug,
+  uid,
+  username,
+}: GetSinglePostProps) {
+  // auto-magically fetch the `uid` for the post when only the username is provided
+  if (!uid && !!username) {
+    const user = await getUser({ username });
+
+    if (!user) {
+      return null;
+    }
+
+    uid = user.uid;
+  }
+
+  // quick integrity check on the input
+  if (!uid || !slug) return null;
+
+  const post = await prisma.post.findUnique({
+    where: {
+      slugKey: {
+        slug,
+        uid,
+      },
+    },
+    include: {
+      user: {
+        select: {
+          name: true,
+          username: true,
+          image: true,
+        },
+      },
+    },
+  });
+
+  return post;
+}
