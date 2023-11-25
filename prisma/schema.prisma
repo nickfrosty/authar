@@ -30,11 +30,11 @@ model User {
   verified Boolean @default(false)
 
   // basic user status info
-  type      UserType? @default(USER)
-  status    Status?   @default(ACTIVE)
-  flags     String?   @db.VarChar(500)
-  createdAt DateTime? @default(now()) @db.DateTime(0)
-  updatedAt DateTime? @updatedAt
+  type      UserType @default(USER)
+  status    Status   @default(ACTIVE)
+  flags     String?  @db.VarChar(500)
+  createdAt DateTime @default(now()) @db.DateTime(0)
+  updatedAt DateTime @updatedAt
 
   // connections to other model structures
   posts Post[]
@@ -57,15 +57,15 @@ model Post {
   image     String?
   tags      String?
   excerpt   String?
-  date      DateTime? @default(now()) @db.DateTime(0)
-  updatedAt DateTime? @updatedAt
+  date      DateTime @default(now()) @db.DateTime(0)
+  updatedAt DateTime @updatedAt
 
   // seo metadata
   seoTitle       String?
   seoDescription String?
 
   //
-  status Status? @default(ACTIVE)
+  status Status @default(ACTIVE)
 
   @@unique([uid, slug], name: "slugKey")
   @@index([id], name: "post_id_idx")
