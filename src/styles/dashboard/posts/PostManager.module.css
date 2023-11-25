@@ -19,12 +19,13 @@
 .primaryArea {
   @apply flex gap-4 py-5 w-full;
 }
-.primaryArea .imageWrapper {
-  @apply overflow-hidden;
+.imageWrapper {
+  @apply overflow-hidden rounded-md relative;
+  @apply border border-gray-200 bg-gray-100 text-gray-400;
+  @apply w-44 aspect-video;
 }
-.primaryArea .imageWrapper img {
-  @apply w-44;
-  @apply rounded-md aspect-video object-cover object-center;
+.imageWrapper img {
+  @apply object-cover object-center;
 }
 .primaryArea .metadata {
   @apply space-y-1;
