@@ -65,6 +65,7 @@ input[type="password"] {
 }
 .btn-dark {
   @apply bg-gray-800 border-gray-500 text-white;
+  @apply disabled:text-gray-400 disabled:border-gray-300 disabled:bg-gray-200;
 }
 .btn-ghost {
   @apply bg-transparent border-gray-300;
