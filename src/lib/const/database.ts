@@ -35,6 +35,9 @@ export const USERNAME_BLACKLIST = [
  */
 export const POST_SLUG_BLACKLIST = [
   // comment for better diffs
+  "local",
+  "err",
+  "error",
   "edit",
   "archive",
   "coffee",
