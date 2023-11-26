@@ -84,3 +84,10 @@ export function isValidUrl(string: string) {
     return false;
   }
 }
+
+/**
+ * Standard number formatter
+ */
+export function numberFormatter(val: number) {
+  return Intl.NumberFormat(undefined, {}).format(val);
+}
