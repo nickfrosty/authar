@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useCallback, useContext, useState } from "react";
 import type { getSinglePost } from "@/lib/queries/posts";
 
 type EditablePost = NonNullable<Awaited<ReturnType<typeof getSinglePost>>>;
@@ -14,6 +14,8 @@ type PostEditorStateContext = {
   post?: EditablePost | null;
   /** state setter for the current `post` */
   setPost: React.Dispatch<React.SetStateAction<EditablePost | null>>;
+  /** Update a specific named data value for a Post */
+  updatePostData: (name: keyof EditablePost, value: any) => void;
 };
 
 const Context = createContext<PostEditorStateContext>({
@@ -21,6 +23,7 @@ const Context = createContext<PostEditorStateContext>({
   setEditorMenu: () => {},
   post: null,
   setPost: () => null,
+  updatePostData: () => {},
 });
 
 export function PostEditorStateContext({
@@ -30,11 +33,36 @@ export function PostEditorStateContext({
   children: React.ReactNode;
   initialPost: EditablePost | null;
 }) {
+  // initialize the state trackers for the on-page form state
+  const [loading, setLoading] = useState<boolean>(false);
+  const [pendingChanges, setPendingChanges] = useState<boolean>(false);
+
   // open & close state for the `EditorMenu`
-  const [editorMenu, setEditorMenu] = useState(false);
+  const [editorMenu, setEditorMenu] = useState<boolean>(false);
 
   // the post to be edited (with its state setter of course)
   const [post, setPost] = useState<EditablePost | null>(initialPost || null);
+
+  // callback function to handle the various input state changes
+  const updatePostData = useCallback(
+    (name: keyof EditablePost, value: any) => {
+      // update the status of pending changes
+      if (!pendingChanges) setPendingChanges(true);
+
+      // actually update the form's state
+      const data = { ...post };
+      data[name] = value as never;
+      // @ts-ignore
+      setPost(data);
+    },
+    [
+      // comment for better diffs
+      pendingChanges,
+      setPendingChanges,
+      post,
+      setPost,
+    ],
+  );
 
   /**
    * todo: saving and fetching state from local storage and remote resources
@@ -47,6 +75,7 @@ export function PostEditorStateContext({
         // comment for better diffs
         editorMenu,
         setEditorMenu,
+        updatePostData,
         post,
         setPost,
       }}
