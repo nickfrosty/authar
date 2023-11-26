@@ -1,10 +1,11 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getSinglePost } from "@/lib/queries/posts";
 
+import { PostEditorStateContext } from "@/context/PostEditorState";
 import Editor from "@/components/editor";
 import { EditorMenu } from "@/components/dashboard/editor/EditorMenu";
 import { EditorHeader } from "@/components/dashboard/editor/EditorHeader";
-import { PostEditorStateContext } from "@/context/PostEditorState";
 
 type PageProps = {
   params: {
@@ -19,12 +20,18 @@ export const metadata: Metadata = {
 export default async function Page({ params }: PageProps) {
   if (!params.post) notFound();
 
-  const post = {};
+  const username = "nickfrosty";
+
+  // get the unique post record from the database
+  const post = await getSinglePost({
+    slug: params.post,
+    username: username,
+  });
 
   if (!post) notFound();
 
   return (
-    <PostEditorStateContext>
+    <PostEditorStateContext initialPost={post}>
       <main className="md:flex justify-between flex-row">
         <section className="!flex-grow !max-w-full py-6 px-6 space-y-4 max-h-screen overflow-auto">
           <EditorHeader />
