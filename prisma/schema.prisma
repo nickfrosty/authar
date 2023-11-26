@@ -64,6 +64,11 @@ model Post {
   seoTitle       String?
   seoDescription String?
 
+  // metrics and data counters
+  views Int @default(0) @db.UnsignedInt
+  likes Int @default(0) @db.UnsignedInt
+  saves Int @default(0) @db.UnsignedInt
+
   //
   status Status @default(ACTIVE)
 
