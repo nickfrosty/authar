@@ -18,6 +18,7 @@ export const EditorMenu = memo(({ className = "" }: EditorMenuProps) => {
     editorMenu: showMenu,
     setEditorMenu: setShowMenu,
     post,
+    updatePostData,
   } = usePostEditorState();
 
   return (
@@ -59,6 +60,7 @@ export const EditorMenu = memo(({ className = "" }: EditorMenuProps) => {
               id="slug"
               placeholder="Customize this post URL"
               value={post?.slug || ""}
+              onChange={(e) => updatePostData("slug", e.target.value)}
             />
           </div>
         </FormItem>
@@ -70,6 +72,7 @@ export const EditorMenu = memo(({ className = "" }: EditorMenuProps) => {
             id="date"
             placeholder=""
             value={format(post!.date, "yyyy-MM-dd hh:mm")}
+            onChange={(e) => updatePostData("date", e.target.value)}
           />
         </FormItem>
 
@@ -84,6 +87,7 @@ export const EditorMenu = memo(({ className = "" }: EditorMenuProps) => {
             id="tags"
             placeholder="Start typing a tag..."
             value={post?.tags || ""}
+            onChange={(e) => updatePostData("tags", e.target.value)}
           />
         </FormItem>
 
@@ -94,6 +98,7 @@ export const EditorMenu = memo(({ className = "" }: EditorMenuProps) => {
             placeholder="A brief excerpt of this post"
             maxLength={150}
             defaultValue={post?.excerpt || ""}
+            onChange={(e) => updatePostData("excerpt", e.target.value)}
           ></textarea>
         </FormItem>
       </MenuSection>
@@ -113,6 +118,7 @@ export const EditorMenu = memo(({ className = "" }: EditorMenuProps) => {
               post?.title || "Custom title to display in search engines"
             }
             value={post?.seoTitle || ""}
+            onChange={(e) => updatePostData("seoTitle", e.target.value)}
           />
         </FormItem>
 
@@ -123,6 +129,7 @@ export const EditorMenu = memo(({ className = "" }: EditorMenuProps) => {
             placeholder={post?.excerpt || "Brief description of this post"}
             maxLength={150}
             defaultValue={post?.seoDescription || ""}
+            onChange={(e) => updatePostData("seoDescription", e.target.value)}
           ></textarea>
         </FormItem>
 
