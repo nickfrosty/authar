@@ -6,7 +6,8 @@ import { FeatherIcon } from "@/components/core/FeatherIcon";
 import { usePostEditorState } from "@/context/PostEditorState";
 
 export const EditorHeader = memo(({ className = "" }: SimpleComponentProps) => {
-  const { editorMenu, setEditorMenu, pendingChanges } = usePostEditorState();
+  const { editorMenu, setEditorMenu, pendingChanges, post } =
+    usePostEditorState();
 
   return (
     <header
@@ -27,7 +28,7 @@ export const EditorHeader = memo(({ className = "" }: SimpleComponentProps) => {
       <section className="flex justify-between gap-2 items-center">
         <Link
           target="_blank"
-          href="/user_profile/post-slug-or-id-here"
+          href={`/${post?.user.username}/${post?.slug || "error"}`}
           className="inline-flex btn btn-ghost btn-sm"
         >
           Preview
