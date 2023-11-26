@@ -5,11 +5,13 @@ import Link from "next/link";
 import { FeatherIcon } from "@/components/core/FeatherIcon";
 import { usePostEditorState } from "@/context/PostEditorState";
 
-export const EditorHeader = memo(({}: SimpleComponentProps) => {
+export const EditorHeader = memo(({ className = "" }: SimpleComponentProps) => {
   const { editorMenu, setEditorMenu } = usePostEditorState();
 
   return (
-    <header className="flex w-full justify-between gap-2 items-center">
+    <header
+      className={`flex w-full justify-between gap-2 items-center ${className}`}
+    >
       <section className="flex justify-between gap-4 items-center">
         <Link
           href="/dashboard/posts"
