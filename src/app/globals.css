@@ -72,6 +72,11 @@ input[type="password"] {
   @apply disabled:text-gray-300;
 }
 
+.prose:first-child,
+.prose div[data-lexical-editor] :first-child {
+  @apply mt-0 !important;
+}
+
 .prose-cover-image {
   max-width: 60rem;
   --child-width: 60rem;
