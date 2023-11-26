@@ -6,7 +6,7 @@ import { FeatherIcon } from "@/components/core/FeatherIcon";
 import { usePostEditorState } from "@/context/PostEditorState";
 
 export const EditorHeader = memo(({ className = "" }: SimpleComponentProps) => {
-  const { editorMenu, setEditorMenu } = usePostEditorState();
+  const { editorMenu, setEditorMenu, pendingChanges } = usePostEditorState();
 
   return (
     <header
@@ -34,7 +34,11 @@ export const EditorHeader = memo(({ className = "" }: SimpleComponentProps) => {
           <FeatherIcon name="ExternalLink" size={16} />
         </Link>
 
-        <button type="button" className="inline-block btn btn-dark btn-sm">
+        <button
+          type="button"
+          className="inline-block btn btn-dark btn-sm"
+          disabled={!pendingChanges}
+        >
           Publish
         </button>
 
