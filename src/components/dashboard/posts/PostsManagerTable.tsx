@@ -4,6 +4,7 @@ import Image from "next/image";
 import { type getPostsForUser } from "@/lib/queries/posts";
 import { FeatherIcon } from "@/components/core/FeatherIcon";
 import styles from "@/styles/dashboard/posts/PostManager.module.css";
+import { PostItemMoreOptions } from "./PostItemMoreOptions";
 
 type PostsManagerTableProps = {
   posts: NonNullable<Awaited<ReturnType<typeof getPostsForUser>>>;
@@ -68,9 +69,7 @@ export const PostsManagerTable = memo(({ posts }: PostsManagerTableProps) => {
               </td> */}
 
               <td className={styles.small}>
-                <button className="btn btn-ghost !p-2">
-                  <FeatherIcon name="MoreVertical" />
-                </button>
+                <PostItemMoreOptions />
               </td>
             </tr>
           );
