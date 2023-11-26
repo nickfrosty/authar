@@ -103,7 +103,11 @@ export const EditorMenu = memo(({ className = "" }: EditorMenuProps) => {
         </FormItem>
       </MenuSection>
 
-      <MenuSection label="SEO Settings" canToggle={true}>
+      <MenuSection
+        label="SEO Settings"
+        canToggle={true}
+        defaultState={!!post?.seoTitle || !!post?.seoDescription}
+      >
         <p className={styles.minor}>
           Custom post details to be displayed on search engines like Google,
           Bing, and others.
@@ -177,13 +181,19 @@ const FormItem = memo(
 
 type MenuSectionProps = {
   label?: string | React.ReactNode;
-  canToggle?: boolean;
   children: React.ReactNode;
+  canToggle?: boolean;
+  defaultState?: boolean;
 };
 
 const MenuSection = memo(
-  ({ label, canToggle = false, children }: MenuSectionProps) => {
-    const [showSection, setShowSection] = useState(false);
+  ({
+    label,
+    canToggle = false,
+    defaultState = false,
+    children,
+  }: MenuSectionProps) => {
+    const [showSection, setShowSection] = useState<boolean>(defaultState);
 
     return (
       <section className={styles.section}>
