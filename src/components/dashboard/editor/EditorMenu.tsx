@@ -7,14 +7,18 @@ import { usePostEditorState } from "@/context/PostEditorState";
 import { FeatherIcon } from "@/components/core/FeatherIcon";
 import form from "@/styles/Forms.module.css";
 import styles from "@/styles/dashboard/editor/EditorMenu.module.css";
+import { format, getUnixTime } from "date-fns";
 
 type EditorMenuProps = {
   className?: string;
 };
 
 export const EditorMenu = memo(({ className = "" }: EditorMenuProps) => {
-  const { editorMenu: showMenu, setEditorMenu: setShowMenu } =
-    usePostEditorState();
+  const {
+    editorMenu: showMenu,
+    setEditorMenu: setShowMenu,
+    post,
+  } = usePostEditorState();
 
   return (
     <aside
@@ -45,7 +49,7 @@ export const EditorMenu = memo(({ className = "" }: EditorMenuProps) => {
         <FormItem
           name="slug"
           label="Post URL"
-          description={`authar.io/username/post-slug-here`}
+          description={`authar.io/username/${post?.slug || "<required>"}`}
         >
           <div className={styles.elementWithIcon}>
             <FeatherIcon name="Link" strokeWidth={1.8} />
@@ -54,12 +58,19 @@ export const EditorMenu = memo(({ className = "" }: EditorMenuProps) => {
               name="slug"
               id="slug"
               placeholder="Customize this post URL"
+              value={post?.slug || ""}
             />
           </div>
         </FormItem>
 
         <FormItem name="date" label="Publish date">
-          <input type="datetime-local" name="date" id="date" placeholder="" />
+          <input
+            type="datetime-local"
+            name="date"
+            id="date"
+            placeholder=""
+            value={format(post!.date, "yyyy-MM-dd hh:mm")}
+          />
         </FormItem>
 
         <FormItem
@@ -72,6 +83,7 @@ export const EditorMenu = memo(({ className = "" }: EditorMenuProps) => {
             name="tags"
             id="tags"
             placeholder="Start typing a tag..."
+            value={post?.tags || ""}
           />
         </FormItem>
 
@@ -81,6 +93,7 @@ export const EditorMenu = memo(({ className = "" }: EditorMenuProps) => {
             id="excerpt"
             placeholder="A brief excerpt of this post"
             maxLength={150}
+            defaultValue={post?.excerpt || ""}
           ></textarea>
         </FormItem>
       </MenuSection>
@@ -96,7 +109,10 @@ export const EditorMenu = memo(({ className = "" }: EditorMenuProps) => {
             type="text"
             name="seo_title"
             id="seo_title"
-            placeholder="Custom title to display in search engines"
+            placeholder={
+              post?.title || "Custom title to display in search engines"
+            }
+            value={post?.seoTitle || ""}
           />
         </FormItem>
 
@@ -104,8 +120,9 @@ export const EditorMenu = memo(({ className = "" }: EditorMenuProps) => {
           <textarea
             name="seo_description"
             id="seo_description"
-            placeholder="Brief description of this post"
+            placeholder={post?.excerpt || "Brief description of this post"}
             maxLength={150}
+            defaultValue={post?.seoDescription || ""}
           ></textarea>
         </FormItem>
 
