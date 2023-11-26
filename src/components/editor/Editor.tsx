@@ -17,7 +17,7 @@ export const Editor = ({
   className = "border-none focus:outline-none",
 }: EditorProps) => {
   // track the editor's initialization status
-  const [initialized, setInitialized] = useState(true);
+  const [initialized, setInitialized] = useState(false);
   const [localStorageContent, setLocalStorageContent] = useState<string | null>(
     null,
   );
@@ -26,7 +26,7 @@ export const Editor = ({
   // todo: make this more dynamic to be post specific
   useEffect(() => {
     setLocalStorageContent(localStorage.getItem(editorId));
-    setInitialized(false);
+    setInitialized(true);
   }, []);
 
   /**
@@ -39,7 +39,7 @@ export const Editor = ({
    * in the future, maybe we render the editor content as static text,
    * then allow the editor to take control?
    */
-  if (initialized) return null;
+  if (!initialized) return <>loading post...</>;
 
   return (
     <EditorHistoryStateContext>
