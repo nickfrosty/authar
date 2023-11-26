@@ -74,29 +74,40 @@ export const DropdownSection = ({
 // DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 // &&
 type DropdownItemProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  icon?: FeatherIconName;
   label: string;
+  icon?: FeatherIconName;
+  iconSide?: "left" | "right";
 };
 
 /**
  *
  */
-export const DropdownItem = ({ icon, label, ...props }: DropdownItemProps) => {
+export const DropdownItem = ({
+  icon,
+  label,
+  iconSide = "left",
+  ...props
+}: DropdownItemProps) => {
   return (
     <Menu.Item>
       {({ active }) => (
         <button
           className={clsx(
             "group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm",
+            iconSide == "right" ? "justify-between" : "justify-start",
             active ? "bg-gray-100 text-black" : "text-gray-900",
           )}
           {...props}
         >
-          {typeof icon !== "undefined" && (
-            <FeatherIcon name={icon} aria-hidden="true" />
+          {typeof icon !== "undefined" && iconSide == "left" && (
+            <FeatherIcon name={icon} aria-hidden="true" size={18} />
           )}
 
           {label && label}
+
+          {typeof icon !== "undefined" && iconSide == "right" && (
+            <FeatherIcon name={icon} aria-hidden="true" size={18} />
+          )}
         </button>
       )}
     </Menu.Item>
