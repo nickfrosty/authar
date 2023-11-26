@@ -71,7 +71,7 @@ export const PostsManagerTable = memo(({ posts }: PostsManagerTableProps) => {
               </td>
 
               <td className={styles.small}>
-                <button className="btn !p-2">
+                <button className="btn btn-ghost !p-2">
                   <FeatherIcon name="MoreVertical" />
                 </button>
               </td>
