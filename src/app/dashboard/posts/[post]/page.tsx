@@ -33,11 +33,11 @@ export default async function Page({ params }: PageProps) {
   return (
     <PostEditorStateContext initialPost={post}>
       <main className="md:flex justify-between flex-row">
-        <section className="!flex-grow !max-w-full py-6 px-6 space-y-4 max-h-screen overflow-auto">
-          <EditorHeader />
+        <section className="!flex-grow !max-w-full max-h-screen overflow-auto">
+          <EditorHeader className="sticky top-0 h-min bg-white border-b border-gray-300 px-6 py-3" />
 
           <article
-            className="!flex-grow !max-w-full prose"
+            className="!flex-grow !max-w-full prose py-6 px-6"
             id={"lexical-editor"}
           >
             <Editor editorId="lexical-editor" />
