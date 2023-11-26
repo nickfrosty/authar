@@ -6,6 +6,15 @@ import type { getSinglePost } from "@/lib/queries/posts";
 type EditablePost = NonNullable<Awaited<ReturnType<typeof getSinglePost>>>;
 
 type PostEditorStateContext = {
+  /** active loading state */
+  loading: boolean;
+  /** set the active loading state */
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  /** whether or not changes have been made */
+  pendingChanges: boolean;
+  /** update if changes have been made */
+  setPendingChanges: React.Dispatch<React.SetStateAction<boolean>>;
+
   /** current open/close status of the `EditorMenu` */
   editorMenu: boolean;
   /** set the open/close status of the `EditorMenu` */
@@ -19,6 +28,11 @@ type PostEditorStateContext = {
 };
 
 const Context = createContext<PostEditorStateContext>({
+  loading: false,
+  setLoading: () => {},
+  pendingChanges: false,
+  setPendingChanges: () => {},
+
   editorMenu: false,
   setEditorMenu: () => {},
   post: null,
@@ -73,6 +87,11 @@ export function PostEditorStateContext({
     <Context.Provider
       value={{
         // comment for better diffs
+        loading,
+        setLoading,
+        pendingChanges,
+        setPendingChanges,
+
         editorMenu,
         setEditorMenu,
         updatePostData,
