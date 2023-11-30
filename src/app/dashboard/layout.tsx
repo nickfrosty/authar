@@ -1,22 +1,15 @@
 import { Metadata } from "next";
-import { DashboardMenu } from "@/components/dashboard/sidebar/DashboardMenu";
+import { SITE } from "@/lib/const/general";
+import DashboardLayout from "@/layout/DashboardLayout";
 
 type LayoutProps = {
   children: React.ReactNode;
 };
 
 export const metadata: Metadata = {
-  title: "Authar - Dashboard",
+  title: `${SITE.name} - Dashboard`,
 };
 
 export default async function Layout({ children }: LayoutProps) {
-  return (
-    <section className="md:flex flex-row">
-      <DashboardMenu />
-
-      <section className="flex-grow bg-white mt-[56px] md:mt-0">
-        {children}
-      </section>
-    </section>
-  );
+  return <DashboardLayout>{children}</DashboardLayout>;
 }
