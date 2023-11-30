@@ -69,7 +69,7 @@ export default async function Page({ params }: PageProps) {
               <HorizontalPostCard
                 key={key}
                 title={post.title}
-                href={`/${post.user.username}/${post.slug}`}
+                href={`/${profile.username}/${post.slug}`}
                 date={post.date}
                 excerpt={post.excerpt}
                 image={post.image}
