@@ -27,7 +27,7 @@ export const Editor = ({
   useEffect(() => {
     setLocalStorageContent(localStorage.getItem(editorId));
     setInitialized(true);
-  }, []);
+  }, [editorId]);
 
   /**
    * prevent the editor from being rendered until the initialization process is complete
